@@ -8,7 +8,7 @@ namespace Sistema_Tienda
 {
     public class Empleado_Ventas : Empleado
     {
-        
+       //clase derivada de Empleado que posee las funciones del empleado de ventas.       
         protected List<Cliente> clientesEmpleado;
 
 

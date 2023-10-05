@@ -8,16 +8,19 @@ namespace Sistema_Tienda
 {
     public class Empleado_Envios : Empleado
     {
-        protected List<Pedido> pedidos;
+
+        //Clase derivada de Empleado que posee las funciones de Empleado de Envios.
+        private Pedido p;
+        
 
 
-
-
-        public Empleado_Envios(string nombre, double sueldo, int dni) : base(nombre, sueldo, dni)
+        public Empleado_Envios(string nombre, double sueldo, int dni , Pedido p) : base(nombre, sueldo, dni) 
         {
-            base.empleados_envios = new List<Empleado_Envios>();
-            this.pedidos = new List<Pedido>();
+            this.p = p;
+          
         }
+
+       
 
 
 
