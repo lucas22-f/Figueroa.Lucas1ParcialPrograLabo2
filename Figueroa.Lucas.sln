@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sistema_Tienda", "Sistema_Tienda\Sistema_Tienda.csproj", "{CE9B5471-CB59-40BF-B7C8-5977CF245A38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sistema_Tienda", "Sistema_Tienda\Sistema_Tienda.csproj", "{CE9B5471-CB59-40BF-B7C8-5977CF245A38}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prueba", "Prueba\Prueba.csproj", "{9E6BB03D-C523-4D71-A63D-CB4B41E68B56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{CE9B5471-CB59-40BF-B7C8-5977CF245A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE9B5471-CB59-40BF-B7C8-5977CF245A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE9B5471-CB59-40BF-B7C8-5977CF245A38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E6BB03D-C523-4D71-A63D-CB4B41E68B56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E6BB03D-C523-4D71-A63D-CB4B41E68B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E6BB03D-C523-4D71-A63D-CB4B41E68B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E6BB03D-C523-4D71-A63D-CB4B41E68B56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
