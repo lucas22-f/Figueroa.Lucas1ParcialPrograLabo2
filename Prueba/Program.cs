@@ -18,21 +18,24 @@ internal class Program
         new Producto("remera5", 13, "remera negra de algodon"),
         };
         Cliente cliente = new Cliente("lucas", 402002);
-        Empleado_Ventas vendedor = new Empleado_Ventas(cliente,"Vendedor de lucas",2000,3240,productos);
-        Empleado_Ventas vendedor2 = new Empleado_Ventas(cliente,"Vendedor de lucas",2000,3240,productos,Experiencia.Experto);
+        Empleado_Ventas vendedor = new Empleado_Ventas(cliente,"Vendedor de lucas",2000,32340,productos);
+        Empleado_Ventas vendedor2 = new Empleado_Ventas(cliente,"Vendedor de lucas",2000,35240,productos,Experiencia.Experto);
 
         vendedor.RealizarTarea();
         vendedor2.RealizarTarea();
 
         Console.WriteLine(Empleado_Ventas.VentasRealizadas);
-
+        
         Console.WriteLine("_____________________________________________________________________________");
 
         Console.WriteLine(vendedor.ToString());
 
         Pedido p = vendedor.ConcretarPedido(cliente);
 
+        Console.WriteLine("_____________________________________________________________________________");
         Console.WriteLine(p.ToString());
+
+        Console.WriteLine(vendedor == vendedor2);
 
 
 

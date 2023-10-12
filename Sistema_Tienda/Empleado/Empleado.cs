@@ -62,9 +62,32 @@ namespace Sistema_Tienda.Empleado
             return sb.ToString();
         }
 
+        public static bool operator == (Empleado e1, Empleado e2)
+        {
+
+            return e1.dni == e2.dni;
+        }
+
+        public static bool operator !=(Empleado e1, Empleado e2)
+        {
+            return !(e1 == e2);
+        }
 
 
+        public override bool Equals(object? obj)
+        {
+            bool retorno = false;
 
+            if (obj is Empleado)
+            {
 
+                retorno = this == (Empleado)obj;
+
+            }
+
+            return retorno;
+        }
+
+        
     }
 }

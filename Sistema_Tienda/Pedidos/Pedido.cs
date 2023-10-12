@@ -16,12 +16,18 @@ namespace Sistema_Tienda
         private bool ventaFinalizada;
         protected Cliente c;
 
+
+        private int IdPedido
+        {
+            get { return this.idPedido;  }
+        }
         public Pedido()
         {
             this.productos = new List<Producto>();
             this.vendedor = new Empleado_Ventas();
             this.c = new Cliente();
             this.ventaFinalizada = false;
+            this.idPedido += 1;
         }
         public Pedido(Empleado_Ventas vendedor,Cliente c , List<Producto> productos):this()
         {
@@ -35,7 +41,7 @@ namespace Sistema_Tienda
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($"id Pedido : {this.idPedido}");
+            sb.Append($"id Pedido : {this.idPedido}\n");
             foreach(Producto producto in this.productos)
             {
                 sb.AppendLine( producto.ToString() );
@@ -49,6 +55,27 @@ namespace Sistema_Tienda
 
             return sb.ToString();   
         }
+
+        public static bool operator == ( Pedido a , Pedido b)
+        {
+            return a.IdPedido == b.IdPedido;
+        }
+        public static bool operator !=(Pedido a, Pedido b)
+        {
+            return !(a == b);
+        }
+        public override bool Equals(object? obj)
+        {
+            bool res = false;
+            if(obj is Pedido)
+            {
+                res = this == (Pedido)obj;
+            }
+
+            return res;
+        }
+
+
 
 
 

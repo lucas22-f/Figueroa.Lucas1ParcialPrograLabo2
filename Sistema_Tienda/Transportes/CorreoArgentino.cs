@@ -25,5 +25,11 @@ namespace Sistema_Tienda.Transportes
         }
 
 
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+
     }
 }

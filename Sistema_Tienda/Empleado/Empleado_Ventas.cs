@@ -38,7 +38,22 @@ namespace Sistema_Tienda.Empleado
             this.productos = productos;
             
         }
-      
+
+
+        public override bool Equals(object? obj)
+        {
+            bool retorno = false;
+
+            if (obj is Empleado_Ventas)
+            {
+
+                retorno = this == (Empleado_Ventas)obj;
+
+            }
+
+            return retorno;
+        }
+
 
 
 

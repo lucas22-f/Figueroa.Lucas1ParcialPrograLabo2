@@ -11,6 +11,8 @@ namespace Sistema_Tienda.Empleado
 
         //Clase derivada de Empleado que posee las funciones de Empleado de Envios.
         private Pedido p;
+        private static int pedidosPreparados;
+        private DateTime fechaPedidoPreparado;
         
 
 
@@ -29,5 +31,25 @@ namespace Sistema_Tienda.Empleado
         {
             return base.ToString();
         }
+
+
+       
+
+        public override bool Equals(object? obj)
+        {
+            bool retorno = false;
+
+            if (obj is Empleado_Envios)
+            {
+
+                retorno = this == (Empleado_Envios)obj;
+
+            }
+
+            return retorno;
+        }
+
+
+
     }
 }

@@ -19,6 +19,12 @@ namespace Sistema_Tienda
             Producto.idProducto = 0;
         }
 
+        private int IdProducto
+        {
+            get { return idProducto; } 
+            
+        }
+           
         public Producto(string nombreProducto, int cantidad, string descripcion)
         {
             
@@ -42,6 +48,26 @@ namespace Sistema_Tienda
             
 
             return sb.ToString();
+        }
+
+
+        public static bool operator ==(Producto a, Producto b)
+        {
+            return a.IdProducto == b.IdProducto;
+        }
+        public static bool operator !=(Producto a, Producto b)
+        {
+            return !(a == b);
+        }
+        public override bool Equals(object? obj)
+        {
+            bool res = false;
+            if (obj is Producto)
+            {
+                res = this == (Producto)obj;
+            }
+
+            return res;
         }
     }
 }

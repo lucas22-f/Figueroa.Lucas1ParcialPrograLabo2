@@ -12,6 +12,14 @@ namespace Sistema_Tienda
         private string nombre;
         private int dni;
         private static int idCliente;
+
+
+        private int IdCliente
+        {
+            get { return idCliente; }
+        }
+        
+        
         
         
         static Cliente()
@@ -32,6 +40,31 @@ namespace Sistema_Tienda
             this.dni = dni;
             Cliente.idCliente += 1;
             
+        }
+
+        public static bool operator == (Cliente c1, Cliente c2)
+        {
+
+            return c1.dni == c2.dni || c1.IdCliente == c2.IdCliente;
+        }
+
+        public static bool operator != (Cliente c1, Cliente c2)
+        {
+            return !(c1 == c2);
+        }
+
+
+        public override bool Equals(object? obj)
+        {
+            bool retorno = false;
+
+            if (obj is  Cliente) {
+
+                retorno =  this == (Cliente)obj;
+            
+            }
+
+            return retorno;
         }
 
         public override string ToString()

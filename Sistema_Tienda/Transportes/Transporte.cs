@@ -32,6 +32,50 @@ namespace Sistema_Tienda.Transportes
             return this.totalFacturado;
         }
 
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(nombre);
+            sb.Append('(');
+            sb.Append(p.ToString());
+            sb.Append(")");
+            sb.Append($"Total facturado :  {this.totalFacturado}");
+            sb.Append(')');
+
+            return sb.ToString();   
+
+
+            
+        }
+
+
+        public static bool operator ==(Transporte a, Transporte b)
+        {
+
+            return a.nombre == b.nombre;
+        }
+
+        public static bool operator !=(Transporte a, Transporte b)
+        {
+            return !(a == b);
+        }
+
+
+        public override bool Equals(object? obj)
+        {
+            bool retorno = false;
+
+            if (obj is Transporte)
+            {
+
+                retorno = this == (Transporte)obj;
+
+            }
+
+            return retorno;
+        }
+
 
 
     }
