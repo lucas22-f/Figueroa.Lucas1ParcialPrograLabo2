@@ -71,5 +71,10 @@ namespace Sistema_Tienda
         {
             return $"{this.nombre}  -   {this.dni} --  id:{Cliente.idCliente}";
         }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

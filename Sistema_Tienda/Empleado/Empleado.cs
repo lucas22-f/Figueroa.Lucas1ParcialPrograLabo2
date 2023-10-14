@@ -51,13 +51,13 @@ namespace Sistema_Tienda.Empleado
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append( nombre );
+            sb.AppendLine( nombre );
             sb.Append(' ');
             sb.Append((int)sueldo);
             sb.Append(' ');
-            sb.Append(((int)dni).ToString());
+            sb.AppendLine(((int)dni).ToString());
             sb.Append(' ');
-            sb.Append($"{this.exp}");
+            sb.AppendLine($"{this.exp}");
             
             return sb.ToString();
         }
@@ -88,6 +88,25 @@ namespace Sistema_Tienda.Empleado
             return retorno;
         }
 
-        
+        public static bool operator +(SistemaTienda sistema , Empleado e)
+        {
+           
+            sistema.ListaEmpleados.Add(e);
+            return true;
+            
+        }
+
+        public static bool operator -(SistemaTienda sistema, Empleado e)
+        {
+
+            sistema.ListaEmpleados.Remove(e);
+            return true;
+
+        }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
