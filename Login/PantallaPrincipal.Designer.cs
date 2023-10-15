@@ -40,6 +40,7 @@
             label2 = new Label();
             label3 = new Label();
             pictureBox2 = new PictureBox();
+            btnExit = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -108,6 +109,8 @@
             // lblNombre
             // 
             lblNombre.AutoSize = true;
+            lblNombre.BackColor = Color.MidnightBlue;
+            lblNombre.ForeColor = SystemColors.ButtonHighlight;
             lblNombre.Location = new Point(302, 9);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(38, 15);
@@ -117,6 +120,8 @@
             // lblCorreo
             // 
             lblCorreo.AutoSize = true;
+            lblCorreo.BackColor = Color.MidnightBlue;
+            lblCorreo.ForeColor = SystemColors.ButtonHighlight;
             lblCorreo.Location = new Point(529, 9);
             lblCorreo.Name = "lblCorreo";
             lblCorreo.Size = new Size(38, 15);
@@ -126,6 +131,8 @@
             // lblPerfil
             // 
             lblPerfil.AutoSize = true;
+            lblPerfil.BackColor = Color.MidnightBlue;
+            lblPerfil.ForeColor = SystemColors.ButtonHighlight;
             lblPerfil.Location = new Point(815, 9);
             lblPerfil.Name = "lblPerfil";
             lblPerfil.Size = new Size(38, 15);
@@ -136,6 +143,8 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.MidnightBlue;
+            label1.ForeColor = SystemColors.ButtonHighlight;
             label1.Location = new Point(245, 9);
             label1.Name = "label1";
             label1.Size = new Size(57, 15);
@@ -145,6 +154,8 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.MidnightBlue;
+            label2.ForeColor = SystemColors.ButtonHighlight;
             label2.Location = new Point(474, 9);
             label2.Name = "label2";
             label2.Size = new Size(49, 15);
@@ -154,6 +165,8 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.MidnightBlue;
+            label3.ForeColor = SystemColors.ButtonHighlight;
             label3.Location = new Point(769, 9);
             label3.Name = "label3";
             label3.Size = new Size(40, 15);
@@ -169,12 +182,24 @@
             pictureBox2.TabIndex = 11;
             pictureBox2.TabStop = false;
             // 
+            // btnExit
+            // 
+            btnExit.BackColor = Color.Crimson;
+            btnExit.FlatAppearance.BorderSize = 0;
+            btnExit.Location = new Point(1161, 5);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(21, 23);
+            btnExit.TabIndex = 12;
+            btnExit.Text = "X";
+            btnExit.UseVisualStyleBackColor = false;
+            // 
             // PantallaPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CornflowerBlue;
             ClientSize = new Size(1194, 651);
+            Controls.Add(btnExit);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -187,6 +212,7 @@
             Controls.Add(btnPedidos);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox2);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "PantallaPrincipal";
             Text = "PantallaPrincipal";
             FormClosed += PantallaPrincipal_FormClosed;
@@ -211,5 +237,6 @@
         private Label label2;
         private Label label3;
         private PictureBox pictureBox2;
+        private Button btnExit;
     }
 }
