@@ -5,6 +5,16 @@ namespace Login
     public partial class Login : Form
     {
         private Usuario usuario;
+        public string TxtBoxCorreo
+        {
+            get { return this.txtboxCorreo.Text; } 
+            set { this.txtboxCorreo.Text = value; }
+        }
+        public string TxtBoxClave
+        {
+            get { return this.txtBoxClave.Text; }
+            set { this.txtBoxClave.Text = value; }
+        }
         public Login()
         {
             InitializeComponent();
@@ -46,7 +56,7 @@ namespace Login
                 {
                     if (usuario.correo == correoEntrada && usuario.clave == claveEntrada)
                     {
-                        MessageBox.Show(usuario.ToString());
+                        
                         this.usuario = usuario;
                         res=usuario;
                         rta=true;

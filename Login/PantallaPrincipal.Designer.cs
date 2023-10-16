@@ -41,8 +41,19 @@
             label3 = new Label();
             pictureBox2 = new PictureBox();
             btnExit = new Button();
+            imgHome = new PictureBox();
+            lstBoxVisor = new ListBox();
+            btnCrear = new Button();
+            lblControl = new Label();
+            btnEditar = new Button();
+            btnEliminar = new Button();
+            imgPanel = new PictureBox();
+            btnHome = new Button();
+            lblPanel = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgHome).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgPanel).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -66,6 +77,7 @@
             btnPedidos.TabIndex = 1;
             btnPedidos.Text = "Pedidos";
             btnPedidos.UseVisualStyleBackColor = false;
+            btnPedidos.Click += btnPedidos_Click;
             // 
             // btnVendedores
             // 
@@ -79,6 +91,7 @@
             btnVendedores.TabIndex = 2;
             btnVendedores.Text = "Vendedores";
             btnVendedores.UseVisualStyleBackColor = false;
+            btnVendedores.Click += btnVendedores_Click;
             // 
             // btnClientes
             // 
@@ -92,6 +105,7 @@
             btnClientes.TabIndex = 3;
             btnClientes.Text = "Clientes";
             btnClientes.UseVisualStyleBackColor = false;
+            btnClientes.Click += btnClientes_Click;
             // 
             // btnTransportes
             // 
@@ -105,15 +119,17 @@
             btnTransportes.TabIndex = 4;
             btnTransportes.Text = "Transportes";
             btnTransportes.UseVisualStyleBackColor = false;
+            btnTransportes.Click += btnTransportes_Click;
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
             lblNombre.BackColor = Color.MidnightBlue;
+            lblNombre.Font = new Font("Tw Cen MT", 11F, FontStyle.Regular, GraphicsUnit.Point);
             lblNombre.ForeColor = SystemColors.ButtonHighlight;
-            lblNombre.Location = new Point(302, 9);
+            lblNombre.Location = new Point(305, 9);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(38, 15);
+            lblNombre.Size = new Size(46, 17);
             lblNombre.TabIndex = 5;
             lblNombre.Text = "label1";
             // 
@@ -121,10 +137,11 @@
             // 
             lblCorreo.AutoSize = true;
             lblCorreo.BackColor = Color.MidnightBlue;
+            lblCorreo.Font = new Font("Tw Cen MT", 11F, FontStyle.Regular, GraphicsUnit.Point);
             lblCorreo.ForeColor = SystemColors.ButtonHighlight;
             lblCorreo.Location = new Point(529, 9);
             lblCorreo.Name = "lblCorreo";
-            lblCorreo.Size = new Size(38, 15);
+            lblCorreo.Size = new Size(46, 17);
             lblCorreo.TabIndex = 6;
             lblCorreo.Text = "label2";
             // 
@@ -132,10 +149,11 @@
             // 
             lblPerfil.AutoSize = true;
             lblPerfil.BackColor = Color.MidnightBlue;
+            lblPerfil.Font = new Font("Tw Cen MT", 11F, FontStyle.Regular, GraphicsUnit.Point);
             lblPerfil.ForeColor = SystemColors.ButtonHighlight;
             lblPerfil.Location = new Point(815, 9);
             lblPerfil.Name = "lblPerfil";
-            lblPerfil.Size = new Size(38, 15);
+            lblPerfil.Size = new Size(46, 17);
             lblPerfil.TabIndex = 7;
             lblPerfil.Text = "label3";
             lblPerfil.Click += lblPerfil_Click;
@@ -144,10 +162,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.MidnightBlue;
+            label1.Font = new Font("Tw Cen MT", 11F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ButtonHighlight;
             label1.Location = new Point(245, 9);
             label1.Name = "label1";
-            label1.Size = new Size(57, 15);
+            label1.Size = new Size(64, 17);
             label1.TabIndex = 8;
             label1.Text = "Nombre :";
             // 
@@ -155,10 +174,11 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.MidnightBlue;
+            label2.Font = new Font("Tw Cen MT", 11F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ButtonHighlight;
             label2.Location = new Point(474, 9);
             label2.Name = "label2";
-            label2.Size = new Size(49, 15);
+            label2.Size = new Size(58, 17);
             label2.TabIndex = 9;
             label2.Text = "Correo :";
             // 
@@ -166,10 +186,11 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.MidnightBlue;
+            label3.Font = new Font("Tw Cen MT", 11F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ButtonHighlight;
             label3.Location = new Point(769, 9);
             label3.Name = "label3";
-            label3.Size = new Size(40, 15);
+            label3.Size = new Size(47, 17);
             label3.TabIndex = 10;
             label3.Text = "Perfil :";
             // 
@@ -186,12 +207,124 @@
             // 
             btnExit.BackColor = Color.Crimson;
             btnExit.FlatAppearance.BorderSize = 0;
-            btnExit.Location = new Point(1161, 5);
+            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.Font = new Font("Segoe UI Historic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnExit.Location = new Point(1160, 8);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(21, 23);
+            btnExit.Size = new Size(22, 20);
             btnExit.TabIndex = 12;
             btnExit.Text = "X";
             btnExit.UseVisualStyleBackColor = false;
+            btnExit.Click += btnExit_Click;
+            // 
+            // imgHome
+            // 
+            imgHome.Image = Properties.Resources.Diseño_sin_título__9_;
+            imgHome.Location = new Point(560, 224);
+            imgHome.Name = "imgHome";
+            imgHome.Size = new Size(256, 252);
+            imgHome.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgHome.TabIndex = 13;
+            imgHome.TabStop = false;
+            // 
+            // lstBoxVisor
+            // 
+            lstBoxVisor.FormattingEnabled = true;
+            lstBoxVisor.ItemHeight = 15;
+            lstBoxVisor.Location = new Point(245, 166);
+            lstBoxVisor.Name = "lstBoxVisor";
+            lstBoxVisor.Size = new Size(787, 439);
+            lstBoxVisor.TabIndex = 14;
+            lstBoxVisor.Visible = false;
+            // 
+            // btnCrear
+            // 
+            btnCrear.BackColor = Color.MediumAquamarine;
+            btnCrear.FlatAppearance.BorderSize = 0;
+            btnCrear.FlatStyle = FlatStyle.Flat;
+            btnCrear.Font = new Font("Tw Cen MT", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCrear.Location = new Point(1057, 175);
+            btnCrear.Name = "btnCrear";
+            btnCrear.Size = new Size(116, 54);
+            btnCrear.TabIndex = 15;
+            btnCrear.Text = "Crear";
+            btnCrear.UseVisualStyleBackColor = false;
+            btnCrear.Visible = false;
+            // 
+            // lblControl
+            // 
+            lblControl.AutoSize = true;
+            lblControl.Font = new Font("Tw Cen MT", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            lblControl.Location = new Point(1067, 105);
+            lblControl.Name = "lblControl";
+            lblControl.Size = new Size(92, 31);
+            lblControl.TabIndex = 16;
+            lblControl.Text = "Control";
+            lblControl.Visible = false;
+            // 
+            // btnEditar
+            // 
+            btnEditar.BackColor = Color.PaleGoldenrod;
+            btnEditar.FlatAppearance.BorderSize = 0;
+            btnEditar.FlatStyle = FlatStyle.Flat;
+            btnEditar.Font = new Font("Tw Cen MT", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnEditar.Location = new Point(1057, 272);
+            btnEditar.Name = "btnEditar";
+            btnEditar.Size = new Size(116, 54);
+            btnEditar.TabIndex = 17;
+            btnEditar.Text = "Editar";
+            btnEditar.UseVisualStyleBackColor = false;
+            btnEditar.Visible = false;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.BackColor = Color.LightCoral;
+            btnEliminar.FlatAppearance.BorderSize = 0;
+            btnEliminar.FlatStyle = FlatStyle.Flat;
+            btnEliminar.Font = new Font("Tw Cen MT", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnEliminar.Location = new Point(1057, 369);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(116, 54);
+            btnEliminar.TabIndex = 18;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Visible = false;
+            // 
+            // imgPanel
+            // 
+            imgPanel.Image = Properties.Resources.Diseño_sin_título__9_;
+            imgPanel.Location = new Point(245, 55);
+            imgPanel.Name = "imgPanel";
+            imgPanel.Size = new Size(106, 105);
+            imgPanel.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgPanel.TabIndex = 19;
+            imgPanel.TabStop = false;
+            imgPanel.Visible = false;
+            // 
+            // btnHome
+            // 
+            btnHome.FlatAppearance.BorderSize = 0;
+            btnHome.FlatStyle = FlatStyle.Flat;
+            btnHome.Font = new Font("Tw Cen MT", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnHome.ForeColor = SystemColors.ActiveCaptionText;
+            btnHome.Location = new Point(1036, 8);
+            btnHome.Name = "btnHome";
+            btnHome.Size = new Size(60, 35);
+            btnHome.TabIndex = 20;
+            btnHome.Text = "inicio";
+            btnHome.UseVisualStyleBackColor = true;
+            btnHome.Click += btnHome_Click;
+            // 
+            // lblPanel
+            // 
+            lblPanel.AutoSize = true;
+            lblPanel.Font = new Font("Tw Cen MT", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPanel.Location = new Point(378, 105);
+            lblPanel.Name = "lblPanel";
+            lblPanel.Size = new Size(92, 31);
+            lblPanel.TabIndex = 21;
+            lblPanel.Text = "Control";
+            lblPanel.Visible = false;
             // 
             // PantallaPrincipal
             // 
@@ -199,6 +332,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CornflowerBlue;
             ClientSize = new Size(1194, 651);
+            Controls.Add(lblPanel);
+            Controls.Add(btnHome);
+            Controls.Add(imgPanel);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnEditar);
+            Controls.Add(lblControl);
+            Controls.Add(btnCrear);
+            Controls.Add(imgHome);
             Controls.Add(btnExit);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -212,6 +353,8 @@
             Controls.Add(btnPedidos);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox2);
+            Controls.Add(lstBoxVisor);
+            Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Name = "PantallaPrincipal";
             Text = "PantallaPrincipal";
@@ -219,6 +362,8 @@
             Load += PantallaPrincipal_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgHome).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgPanel).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -238,5 +383,14 @@
         private Label label3;
         private PictureBox pictureBox2;
         private Button btnExit;
+        private PictureBox imgHome;
+        private ListBox lstBoxVisor;
+        private Button btnCrear;
+        private Label lblControl;
+        private Button btnEditar;
+        private Button btnEliminar;
+        private PictureBox imgPanel;
+        private Button btnHome;
+        private Label lblPanel;
     }
 }
