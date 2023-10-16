@@ -9,37 +9,29 @@ namespace Sistema_Tienda
     //Clase Cliente la cual me da la info de 1 cliente
     public class Cliente
     {
-        private string nombre;
-        private int dni;
-        private static int idCliente;
+        public string nombre { get; set; }
+        public int dni {  get; set; }
+        private static int contadorClientes = 0;
+
+        public int IdCliente { get; private set; }
 
 
-        private int IdCliente
-        {
-            get { return idCliente; }
-        }
         
-        
-        
-        
-        static Cliente()
-        {
-            Cliente.idCliente = 0;
-        }
 
         public Cliente()
         {
             this.nombre = "";
             this.dni = 0;
-            
+            this.IdCliente = ++contadorClientes;
+
         }
 
         public Cliente(string nombre, int dni)
         {
             this.nombre = nombre;
             this.dni = dni;
-            Cliente.idCliente += 1;
-            
+            this.IdCliente = ++contadorClientes;
+
         }
 
         public static bool operator == (Cliente c1, Cliente c2)
@@ -69,7 +61,7 @@ namespace Sistema_Tienda
 
         public override string ToString()
         {
-            return $"{this.nombre}  -   {this.dni} --  id:{Cliente.idCliente}";
+            return $"  {this.nombre}   ---------------------------------------------------   {this.dni}   ---------------------------------------------------   id:{this.IdCliente}  ";
         }
 
         public override int GetHashCode()

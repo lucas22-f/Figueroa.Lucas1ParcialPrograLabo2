@@ -1,4 +1,5 @@
 ﻿using Login;
+using Sistema_Tienda;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,8 @@ namespace App
     {
         private Usuario usuario;
         private Login.Login login;
+
+
         public PantallaPrincipal(Usuario usuario, Login.Login login)
         {
             InitializeComponent();
@@ -72,7 +75,7 @@ namespace App
         {
             this.login.TxtBoxClave = "";
             this.login.TxtBoxCorreo = "";
-            MessageBox.Show("Cerrando sesion...","Info",MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Cerrando sesion...", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
 
@@ -81,7 +84,7 @@ namespace App
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Pedidos";
-            this.lstBoxVisor.Items.Add("Pedidos");
+
         }
 
         private void btnVendedores_Click(object sender, EventArgs e)
@@ -89,7 +92,7 @@ namespace App
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Vendedores";
-            this.lstBoxVisor.Items.Add("Vendedores");
+
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
@@ -97,7 +100,7 @@ namespace App
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Clientes";
-            this.lstBoxVisor.Items.Add("Clientes");
+            this.Deserializar("../../../Data/clientes.json");
         }
 
         private void btnTransportes_Click(object sender, EventArgs e)
@@ -105,7 +108,7 @@ namespace App
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Transportes";
-            this.lstBoxVisor.Items.Add("Transportes");
+
         }
 
 
@@ -133,5 +136,29 @@ namespace App
             this.lblPanel.Visible = false;
             this.lstBoxVisor.Items.Clear();
         }
+
+        private void Deserializar(string ruta)
+        {
+            try
+            {
+                using (System.IO.StreamReader sr = new System.IO.StreamReader(ruta))
+                {
+                    string json_str = sr.ReadToEnd();
+
+                    List<Cliente> aux = (List<Cliente>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Cliente>));
+
+
+                    foreach (Cliente c in aux)
+                    {
+                        this.lstBoxVisor.Items.Add(c);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
     }
 }

@@ -42,7 +42,6 @@
             pictureBox2 = new PictureBox();
             btnExit = new Button();
             imgHome = new PictureBox();
-            lstBoxVisor = new ListBox();
             btnCrear = new Button();
             lblControl = new Label();
             btnEditar = new Button();
@@ -50,6 +49,7 @@
             imgPanel = new PictureBox();
             btnHome = new Button();
             lblPanel = new Label();
+            lstBoxVisor = new ListBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgHome).BeginInit();
@@ -227,16 +227,6 @@
             imgHome.TabIndex = 13;
             imgHome.TabStop = false;
             // 
-            // lstBoxVisor
-            // 
-            lstBoxVisor.FormattingEnabled = true;
-            lstBoxVisor.ItemHeight = 15;
-            lstBoxVisor.Location = new Point(245, 166);
-            lstBoxVisor.Name = "lstBoxVisor";
-            lstBoxVisor.Size = new Size(787, 439);
-            lstBoxVisor.TabIndex = 14;
-            lstBoxVisor.Visible = false;
-            // 
             // btnCrear
             // 
             btnCrear.BackColor = Color.MediumAquamarine;
@@ -326,6 +316,16 @@
             lblPanel.Text = "Control";
             lblPanel.Visible = false;
             // 
+            // lstBoxVisor
+            // 
+            lstBoxVisor.FormattingEnabled = true;
+            lstBoxVisor.ItemHeight = 15;
+            lstBoxVisor.Location = new Point(245, 166);
+            lstBoxVisor.Name = "lstBoxVisor";
+            lstBoxVisor.Size = new Size(787, 439);
+            lstBoxVisor.TabIndex = 14;
+            lstBoxVisor.Visible = false;
+            // 
             // PantallaPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -384,7 +384,6 @@
         private PictureBox pictureBox2;
         private Button btnExit;
         private PictureBox imgHome;
-        private ListBox lstBoxVisor;
         private Button btnCrear;
         private Label lblControl;
         private Button btnEditar;
@@ -392,5 +391,6 @@
         private PictureBox imgPanel;
         private Button btnHome;
         private Label lblPanel;
+        private ListBox lstBoxVisor;
     }
 }

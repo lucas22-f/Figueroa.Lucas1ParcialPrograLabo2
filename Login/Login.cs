@@ -24,7 +24,12 @@ namespace Login
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult res  = MessageBox.Show("Seguro ? ","Atencion! Cerrar sistema ? " ,  MessageBoxButtons.YesNo,MessageBoxIcon.Information);
+            if (res == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            
         }
 
 
