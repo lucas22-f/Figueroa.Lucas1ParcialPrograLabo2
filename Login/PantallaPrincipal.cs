@@ -6,7 +6,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,11 +18,12 @@ namespace App
     {
         private Usuario usuario;
         private Login.Login login;
-
+        private List<Cliente> listaCliente;
 
         public PantallaPrincipal(Usuario usuario, Login.Login login)
         {
             InitializeComponent();
+            this.lstBoxVisor.Items.Clear();
             this.usuario = usuario;
             this.login = login;
         }
@@ -35,19 +38,20 @@ namespace App
             this.lblNombre.Text = this.usuario.nombre;
             this.lblCorreo.Text = this.usuario.correo;
             this.lblPerfil.Text = this.usuario.perfil;
+            this.DeserializarClientes("../../../Data/clientes.json");
 
             switch (this.usuario.perfil)
             {
                 case "vendedor":
-                    this.btnTransportes.Enabled = false;
+                    this.btnTransportistas.Enabled = false;
                     this.btnVendedores.Enabled = false;
                     this.btnVendedores.BackColor = Color.Gray;
-                    this.btnTransportes.BackColor = Color.Gray;
+                    this.btnTransportistas.BackColor = Color.Gray;
                     break;
 
                 case "supervisor":
-                    this.btnTransportes.Enabled = false;
-                    this.btnTransportes.BackColor = Color.Gray;
+                    this.btnTransportistas.Enabled = false;
+                    this.btnTransportistas.BackColor = Color.Gray;
                     break;
 
                 case "envios":
@@ -73,8 +77,8 @@ namespace App
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.login.TxtBoxClave = "";
-            this.login.TxtBoxCorreo = "";
+            //this.login.TxtBoxClave = "";
+            //this.login.TxtBoxCorreo = "";
             MessageBox.Show("Cerrando sesion...", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
@@ -100,7 +104,8 @@ namespace App
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Clientes";
-            this.Deserializar("../../../Data/clientes.json");
+            this.CargarVisorClientes();
+
         }
 
         private void btnTransportes_Click(object sender, EventArgs e)
@@ -137,21 +142,19 @@ namespace App
             this.lstBoxVisor.Items.Clear();
         }
 
-        private void Deserializar(string ruta)
+        private void DeserializarClientes(string ruta)
         {
+            this.lstBoxVisor.Items.Clear();
             try
             {
                 using (System.IO.StreamReader sr = new System.IO.StreamReader(ruta))
                 {
                     string json_str = sr.ReadToEnd();
 
-                    List<Cliente> aux = (List<Cliente>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Cliente>));
+                    List<Cliente> listaClientes = (List<Cliente>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Cliente>));
+                    this.listaCliente = listaClientes;
 
 
-                    foreach (Cliente c in aux)
-                    {
-                        this.lstBoxVisor.Items.Add(c);
-                    }
                 }
             }
             catch (Exception e)
@@ -160,5 +163,85 @@ namespace App
             }
         }
 
+
+        private void SerializarClientes(string ruta)
+        {
+            this.lstBoxVisor.Items.Clear();
+            try
+            {
+
+                JsonSerializerOptions opciones = new JsonSerializerOptions();
+                opciones.WriteIndented = true;
+                string obj_json = JsonSerializer.Serialize(this.listaCliente, typeof(List<Cliente>), opciones);
+
+                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(ruta))
+                {
+                    sw.WriteLine(obj_json);
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        private void CargarVisorClientes()
+        {
+            foreach (Cliente c in this.listaCliente)
+            {
+                this.lstBoxVisor.Items.Add(c);
+            }
+        }
+
+        private void btnCrear_Click(object sender, EventArgs e)
+        {
+            FrmAgregarCliente frmCliente = new FrmAgregarCliente();
+            frmCliente.ShowDialog();
+
+            if (frmCliente.res == DialogResult.OK)
+            {
+                Cliente cli = frmCliente.cliente;
+                this.listaCliente.Add(cli);
+                this.SerializarClientes("../../../Data/clientes.json");
+                this.CargarVisorClientes();
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            int indexList = this.lstBoxVisor.SelectedIndex;
+            if (indexList != -1)
+            {
+
+                FrmAgregarCliente frm = new FrmAgregarCliente(this.listaCliente[indexList]);
+                frm.ShowDialog();
+                if (frm.res == DialogResult.OK)
+                {
+                    this.listaCliente[indexList] = frm.cliente;
+                    this.SerializarClientes("../../../Data/clientes.json");
+                    this.CargarVisorClientes();
+                }
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            int indexList = this.lstBoxVisor.SelectedIndex;
+            if (indexList != -1)
+            {
+                Cliente cli = this.listaCliente[indexList];
+                DialogResult ResBoton = MessageBox.Show($"Estas seguro de borrar el cliente:{cli.nombre} ? ", "Atencion! ", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning); ;
+
+                if (ResBoton == DialogResult.OK)
+                {
+                    this.listaCliente.RemoveAt(indexList);
+                    this.SerializarClientes("../../../Data/clientes.json");
+                    this.CargarVisorClientes();
+                }
+            }
+        }
     }
+
+
 }

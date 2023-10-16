@@ -32,7 +32,7 @@
             btnPedidos = new Button();
             btnVendedores = new Button();
             btnClientes = new Button();
-            btnTransportes = new Button();
+            btnTransportistas = new Button();
             lblNombre = new Label();
             lblCorreo = new Label();
             lblPerfil = new Label();
@@ -107,19 +107,19 @@
             btnClientes.UseVisualStyleBackColor = false;
             btnClientes.Click += btnClientes_Click;
             // 
-            // btnTransportes
+            // btnTransportistas
             // 
-            btnTransportes.BackColor = Color.RoyalBlue;
-            btnTransportes.FlatAppearance.BorderSize = 0;
-            btnTransportes.FlatStyle = FlatStyle.Flat;
-            btnTransportes.ForeColor = SystemColors.ButtonHighlight;
-            btnTransportes.Location = new Point(33, 551);
-            btnTransportes.Name = "btnTransportes";
-            btnTransportes.Size = new Size(153, 54);
-            btnTransportes.TabIndex = 4;
-            btnTransportes.Text = "Transportes";
-            btnTransportes.UseVisualStyleBackColor = false;
-            btnTransportes.Click += btnTransportes_Click;
+            btnTransportistas.BackColor = Color.RoyalBlue;
+            btnTransportistas.FlatAppearance.BorderSize = 0;
+            btnTransportistas.FlatStyle = FlatStyle.Flat;
+            btnTransportistas.ForeColor = SystemColors.ButtonHighlight;
+            btnTransportistas.Location = new Point(33, 551);
+            btnTransportistas.Name = "btnTransportistas";
+            btnTransportistas.Size = new Size(153, 54);
+            btnTransportistas.TabIndex = 4;
+            btnTransportistas.Text = "Transportistas";
+            btnTransportistas.UseVisualStyleBackColor = false;
+            btnTransportistas.Click += btnTransportes_Click;
             // 
             // lblNombre
             // 
@@ -240,6 +240,7 @@
             btnCrear.Text = "Crear";
             btnCrear.UseVisualStyleBackColor = false;
             btnCrear.Visible = false;
+            btnCrear.Click += btnCrear_Click;
             // 
             // lblControl
             // 
@@ -265,6 +266,7 @@
             btnEditar.Text = "Editar";
             btnEditar.UseVisualStyleBackColor = false;
             btnEditar.Visible = false;
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnEliminar
             // 
@@ -279,6 +281,7 @@
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Visible = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // imgPanel
             // 
@@ -347,7 +350,7 @@
             Controls.Add(lblPerfil);
             Controls.Add(lblCorreo);
             Controls.Add(lblNombre);
-            Controls.Add(btnTransportes);
+            Controls.Add(btnTransportistas);
             Controls.Add(btnClientes);
             Controls.Add(btnVendedores);
             Controls.Add(btnPedidos);
@@ -374,7 +377,7 @@
         private Button btnPedidos;
         private Button btnVendedores;
         private Button btnClientes;
-        private Button btnTransportes;
+        private Button btnTransportistas;
         private Label lblNombre;
         private Label lblCorreo;
         private Label lblPerfil;

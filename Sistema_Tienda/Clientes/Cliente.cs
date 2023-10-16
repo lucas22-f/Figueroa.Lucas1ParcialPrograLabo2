@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Sistema_Tienda
@@ -11,9 +12,9 @@ namespace Sistema_Tienda
     {
         public string nombre { get; set; }
         public int dni {  get; set; }
-        private static int contadorClientes = 0;
+        
 
-        public int IdCliente { get; private set; }
+        public string telefono { get; set; }
 
 
         
@@ -22,22 +23,23 @@ namespace Sistema_Tienda
         {
             this.nombre = "";
             this.dni = 0;
-            this.IdCliente = ++contadorClientes;
+            this.telefono = "";
 
         }
 
-        public Cliente(string nombre, int dni)
+        public Cliente(string nombre, int dni ,string telefono):this()
         {
             this.nombre = nombre;
             this.dni = dni;
-            this.IdCliente = ++contadorClientes;
+            this.telefono= telefono;
+          
 
         }
 
         public static bool operator == (Cliente c1, Cliente c2)
         {
 
-            return c1.dni == c2.dni || c1.IdCliente == c2.IdCliente;
+            return c1.dni == c2.dni || c1.telefono == c2.telefono;
         }
 
         public static bool operator != (Cliente c1, Cliente c2)
@@ -61,7 +63,7 @@ namespace Sistema_Tienda
 
         public override string ToString()
         {
-            return $"  {this.nombre}   ---------------------------------------------------   {this.dni}   ---------------------------------------------------   id:{this.IdCliente}  ";
+            return $"Nombre:  {this.nombre}   - - - - - - - - - - - - - - - - - - - - - -  DNI :   {this.dni}   - - - - - - - - - - - - - - - - - - - - - -   Telefono   :{this.telefono}  ";
         }
 
         public override int GetHashCode()

@@ -46,5 +46,13 @@
     "correo": "envio@envio.com",
     "clave": "12345678",
     "perfil": "envios"
+  },
+  {
+    "apellido": "Arevalos",
+    "nombre": "Aldana",
+    "legajo": 7,
+    "correo": "aldi@aldi.com",
+    "clave": "lucasElmejor",
+    "perfil": "administrador"
   }
 ]
