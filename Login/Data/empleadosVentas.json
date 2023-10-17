@@ -1,12 +1,26 @@
-{
-  "ClienteAtendido": {
-    "nombre": "Juan P\u00E9rez",
-    "dni": 12345678,
-    "telefono": "1234-5678"
+[
+  {
+    "ClienteAtendido": {
+      "nombre": "Juan P\u00E9rez",
+      "dni": 12345678,
+      "telefono": "1234-5678"
+    },
+    "Productos": [],
+    "Nombre": "Lucas",
+    "Sueldo": 2000,
+    "Dni": 3010,
+    "Exp": 1
   },
-  "Productos": [],
-  "Nombre": "Lucas",
-  "Sueldo": 2000,
-  "Dni": 3010,
-  "Exp": 1
-}
+  {
+    "ClienteAtendido": {
+      "nombre": "Mar\u00EDa L\u00F3pez",
+      "dni": 23456789,
+      "telefono": "1234-5678"
+    },
+    "Productos": [],
+    "Nombre": "Lucas 2",
+    "Sueldo": 2000,
+    "Dni": 3401,
+    "Exp": 3
+  }
+]

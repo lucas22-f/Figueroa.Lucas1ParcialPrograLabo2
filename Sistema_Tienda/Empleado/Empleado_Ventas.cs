@@ -19,6 +19,7 @@ namespace Sistema_Tienda.Empleado
         public Cliente ClienteAtendido
         {
             get { return clienteAtendido; }
+            set { clienteAtendido = value; }
         }
         public List<Producto> Productos
         {

@@ -20,13 +20,13 @@ namespace App
         private Usuario usuario;
         private Login.Login login;
         private List<Cliente> listaCliente;
-        private List<Empleado_Ventas> empleado_Ventas;
+        private List<Empleado_Ventas> listaEmpleadosVentas;
 
         public PantallaPrincipal(Usuario usuario, Login.Login login)
         {
             InitializeComponent();
             this.listaCliente = new List<Cliente>();
-            this.empleado_Ventas = new List<Empleado_Ventas>();
+            this.listaEmpleadosVentas = new List<Empleado_Ventas>();
             this.lstBoxVisor.Items.Clear();
             this.usuario = usuario;
             this.login = login;
@@ -43,7 +43,7 @@ namespace App
             this.lblCorreo.Text = this.usuario.correo;
             this.lblPerfil.Text = this.usuario.perfil;
             this.DeserializarClientes("../../../Data/clientes.json");
-            this.CrearYguardar1EmpleadoPrueba("../../../Data/empleadosVentas.json");
+            this.DeserializarEmpleadosVentas("../../../Data/empleadosVentas.json");
 
             switch (this.usuario.perfil)
             {
@@ -202,7 +202,7 @@ namespace App
 
         private void CargarVisorVendedores()
         {
-            foreach (Empleado_Ventas c in this.empleado_Ventas)
+            foreach (Empleado_Ventas c in this.listaEmpleadosVentas)
             {
                 this.lstBoxVisor.Items.Add(c);
             }
@@ -257,20 +257,19 @@ namespace App
         }
 
 
-        private void CrearYguardar1EmpleadoPrueba(string ruta)
+        private void DeserializarEmpleadosVentas(string ruta)
         {
             this.lstBoxVisor.Items.Clear();
             try
             {
-                JsonSerializerOptions opciones = new JsonSerializerOptions();
-                opciones.WriteIndented = true;
-                Empleado_Ventas ev = new(this.listaCliente[0], "Lucas", 2000, 3010, new List<Producto>(), Experiencia.Intermedio);
-                MessageBox.Show(ev.ToString());
-                string obj_json = JsonSerializer.Serialize(ev, typeof(Empleado_Ventas), opciones);
-
-                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(ruta))
+                using (System.IO.StreamReader sr = new System.IO.StreamReader(ruta))
                 {
-                    sw.WriteLine(obj_json);
+                    string json_str = sr.ReadToEnd();
+
+                    List<Empleado_Ventas> listaEmpl = (List<Empleado_Ventas>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Empleado_Ventas>));
+                    this.listaEmpleadosVentas = listaEmpl;
+
+
                 }
             }
             catch (Exception e)
