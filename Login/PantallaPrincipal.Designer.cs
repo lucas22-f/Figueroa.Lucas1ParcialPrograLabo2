@@ -328,6 +328,7 @@
             lstBoxVisor.Size = new Size(787, 439);
             lstBoxVisor.TabIndex = 14;
             lstBoxVisor.Visible = false;
+            lstBoxVisor.DoubleClick += lstBoxVisor_DoubleClick;
             // 
             // PantallaPrincipal
             // 

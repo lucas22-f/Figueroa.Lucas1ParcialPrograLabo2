@@ -1,4 +1,4 @@
-﻿using Sistema_Tienda.Transportes;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +11,17 @@ namespace Sistema_Tienda.Clientes
     {
         private Cliente cliente;
         private Pedido pedido;
-        private Transporte transporte;
+       
         private int idPedido;
 
         
-        public PedidoTerminado(Cliente c, Pedido p , Transporte t)
+        public PedidoTerminado(Cliente c, Pedido p)
         {
             this.cliente = c;
             this.pedido = p;
-            this.transporte = t;
+            
         }
-        public PedidoTerminado(Cliente c , Pedido p, Transporte t,int idPedido):this(c,p,t) { 
+        public PedidoTerminado(Cliente c , Pedido p,int idPedido):this(c,p) { 
             
             
             this.idPedido = idPedido;
@@ -35,8 +35,7 @@ namespace Sistema_Tienda.Clientes
             sb.Append(this.pedido.ToString());
             sb.Append(',');
             sb.Append(this.idPedido);
-            sb.Append(",");
-            sb.Append(this.transporte.ToString());
+            
 
             return sb.ToString(); 
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Sistema_Tienda.Empleado
@@ -43,7 +44,7 @@ namespace Sistema_Tienda.Empleado
             get { return base.dni; }
             set { base.dni = value; }
         }
-        public new Experiencia Exp
+        public Experiencia Exp
         {
             get { return base.exp; }
             set { base.exp = value; }
@@ -118,7 +119,16 @@ namespace Sistema_Tienda.Empleado
 
         public override string ToString()
         {
+            
             return base.ToString();
+        }
+
+        public string MostarInfoDetallada()
+        {
+            StringBuilder sb = new(base.ToString());
+            sb.Append($"cliente:\n     {this.clienteAtendido.ToString()}     ");
+           
+            return sb.ToString();
         }
 
 

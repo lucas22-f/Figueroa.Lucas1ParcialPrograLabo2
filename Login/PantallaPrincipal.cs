@@ -21,6 +21,7 @@ namespace App
         private Login.Login login;
         private List<Cliente> listaCliente;
         private List<Empleado_Ventas> listaEmpleadosVentas;
+        private string pantalla;
 
         public PantallaPrincipal(Usuario usuario, Login.Login login)
         {
@@ -30,6 +31,7 @@ namespace App
             this.lstBoxVisor.Items.Clear();
             this.usuario = usuario;
             this.login = login;
+            this.pantalla = "";
         }
 
         private void lblPerfil_Click(object sender, EventArgs e)
@@ -90,6 +92,7 @@ namespace App
 
         private void btnPedidos_Click(object sender, EventArgs e)
         {
+            this.pantalla = "pedidos";
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Pedidos";
@@ -98,6 +101,7 @@ namespace App
 
         private void btnVendedores_Click(object sender, EventArgs e)
         {
+            this.pantalla = "vendedores";
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Vendedores";
@@ -107,6 +111,7 @@ namespace App
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
+            this.pantalla = "clientes";
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Clientes";
@@ -116,6 +121,7 @@ namespace App
 
         private void btnTransportes_Click(object sender, EventArgs e)
         {
+            this.pantalla = "transportes";
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Transportes";
@@ -210,50 +216,69 @@ namespace App
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            FrmAgregarCliente frmCliente = new FrmAgregarCliente();
-            frmCliente.ShowDialog();
-
-            if (frmCliente.res == DialogResult.OK)
+            switch (this.pantalla)
             {
-                Cliente cli = frmCliente.cliente;
-                this.listaCliente.Add(cli);
-                this.SerializarClientes("../../../Data/clientes.json");
-                this.CargarVisorClientes();
+                case "clientes":
+                    FrmAgregarCliente frmCliente = new FrmAgregarCliente();
+                    frmCliente.ShowDialog();
+
+                    if (frmCliente.res == DialogResult.OK)
+                    {
+                        Cliente cli = frmCliente.cliente;
+                        this.listaCliente.Add(cli);
+                        this.SerializarClientes("../../../Data/clientes.json");
+                        this.CargarVisorClientes();
+                    }
+                    break;
+                case "vendedores":break;
             }
+            
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            int indexList = this.lstBoxVisor.SelectedIndex;
-            if (indexList != -1)
+            switch (this.pantalla)
             {
+                case"clientes":
+                    int indexList = this.lstBoxVisor.SelectedIndex;
+                    if (indexList != -1)
+                    {
 
-                FrmAgregarCliente frm = new FrmAgregarCliente(this.listaCliente[indexList]);
-                frm.ShowDialog();
-                if (frm.res == DialogResult.OK)
-                {
-                    this.listaCliente[indexList] = frm.cliente;
-                    this.SerializarClientes("../../../Data/clientes.json");
-                    this.CargarVisorClientes();
-                }
+                        FrmAgregarCliente frm = new FrmAgregarCliente(this.listaCliente[indexList]);
+                        frm.ShowDialog();
+                        if (frm.res == DialogResult.OK)
+                        {
+                            this.listaCliente[indexList] = frm.cliente;
+                            this.SerializarClientes("../../../Data/clientes.json");
+                            this.CargarVisorClientes();
+                        }
+                    }
+                    break;
             }
+            
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            int indexList = this.lstBoxVisor.SelectedIndex;
-            if (indexList != -1)
+            switch (this.pantalla)
             {
-                Cliente cli = this.listaCliente[indexList];
-                DialogResult ResBoton = MessageBox.Show($"Estas seguro de borrar el cliente:{cli.nombre} ? ", "Atencion! ", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning); ;
+                case "clientes":
+                    int indexList = this.lstBoxVisor.SelectedIndex;
+                    if (indexList != -1)
+                    {
+                        Cliente cli = this.listaCliente[indexList];
+                        DialogResult ResBoton = MessageBox.Show($"Estas seguro de borrar el cliente:{cli.nombre} ? ", "Atencion! ", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning); ;
 
-                if (ResBoton == DialogResult.OK)
-                {
-                    this.listaCliente.RemoveAt(indexList);
-                    this.SerializarClientes("../../../Data/clientes.json");
-                    this.CargarVisorClientes();
-                }
+                        if (ResBoton == DialogResult.OK)
+                        {
+                            this.listaCliente.RemoveAt(indexList);
+                            this.SerializarClientes("../../../Data/clientes.json");
+                            this.CargarVisorClientes();
+                        }
+                    }
+                    break;
             }
+            
         }
 
 
@@ -299,6 +324,27 @@ namespace App
             {
                 MessageBox.Show(e.Message);
             }
+        }
+
+        private void ExhibirDetalle()
+        {
+            int indexList = this.lstBoxVisor.SelectedIndex;
+            if (indexList != -1)
+            {
+
+                MessageBox.Show(this.listaEmpleadosVentas[indexList].MostarInfoDetallada());
+
+
+            }
+        }
+
+        private void lstBoxVisor_DoubleClick(object sender, EventArgs e)
+        {
+            if(this.pantalla == "vendedores")
+            {
+                this.ExhibirDetalle();
+            }
+            
         }
     }
 
