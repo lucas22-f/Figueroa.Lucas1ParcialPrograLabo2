@@ -18,17 +18,14 @@ namespace Sistema_Tienda.Empleado
         protected Experiencia exp;
 
 
-        public string Nombre { get; set; }
-        public double Sueldo { get; set; }
-        public int Dni { get; set; }
+        
 
         public Empleado()
         {
-            nombre = "";
-            Nombre = "";
+            
 
         }
-        public Empleado(string nombre, double sueldo, int dni):this() {
+        public Empleado(string nombre, double sueldo, int dni){
             this.exp = Experiencia.Principiante;
             this.nombre = nombre;
             this.sueldo = sueldo;

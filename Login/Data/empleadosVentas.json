@@ -1,0 +1,12 @@
+{
+  "ClienteAtendido": {
+    "nombre": "Juan P\u00E9rez",
+    "dni": 12345678,
+    "telefono": "1234-5678"
+  },
+  "Productos": [],
+  "Nombre": "Lucas",
+  "Sueldo": 2000,
+  "Dni": 3010,
+  "Exp": 1
+}

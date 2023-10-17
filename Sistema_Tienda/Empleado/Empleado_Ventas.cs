@@ -15,16 +15,46 @@ namespace Sistema_Tienda.Empleado
         private static int ventasRealizadas;
         private List<Producto> productos;
 
-        public static int VentasRealizadas { get; private set; }
-        static Empleado_Ventas()
+        
+        public Cliente ClienteAtendido
         {
-            Empleado_Ventas.ventasRealizadas = 0;
+            get { return clienteAtendido; }
         }
+        public List<Producto> Productos
+        {
+            get { return productos; }
+            set { productos = value; } // Agregar un setter
+        }
+
+        public static int VentasRealizadas { get; private set; }
+
+        public new string Nombre
+        {
+            get { return base.nombre; } set { base.nombre = value;}
+        }
+
+        public new double Sueldo
+        {
+            get { return base.sueldo; } set{base.sueldo = value;} 
+        }
+        public new int Dni
+        {
+            get { return base.dni; }
+            set { base.dni = value; }
+        }
+        public new Experiencia Exp
+        {
+            get { return base.exp; }
+            set { base.exp = value; }
+        }
+
+
         public Empleado_Ventas()
         {
-            this.clienteAtendido = new Cliente();
-           this.productos = new List<Producto>();
+
         }
+        
+       
         public Empleado_Ventas(Cliente c , string n , double s, int dni,List<Producto> p) : base(n, s ,dni)
         {
             VentasRealizadas++;

@@ -20,7 +20,7 @@
     "telefono": "1234-5678"
   },
   {
-    "nombre": "Andr\u00E9s Rodr\u00EDguez",
+    "nombre": "Pepe Rodriguez",
     "dni": 56789012,
     "telefono": "1234-5678"
   },
@@ -41,7 +41,7 @@
   },
   {
     "nombre": "Carmen S\u00E1nchez",
-    "dni": 90123456,
+    "dni": 1111111111,
     "telefono": "13134-1413"
   }
 ]

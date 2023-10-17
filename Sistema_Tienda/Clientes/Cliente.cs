@@ -12,8 +12,6 @@ namespace Sistema_Tienda
     {
         public string nombre { get; set; }
         public int dni {  get; set; }
-        
-
         public string telefono { get; set; }
 
 

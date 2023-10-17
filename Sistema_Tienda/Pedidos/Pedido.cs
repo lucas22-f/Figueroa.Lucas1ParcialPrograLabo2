@@ -24,7 +24,7 @@ namespace Sistema_Tienda
         public Pedido()
         {
             this.productos = new List<Producto>();
-            this.vendedor = new Empleado_Ventas();
+            //this.vendedor = new Empleado_Ventas();
             this.c = new Cliente();
             this.ventaFinalizada = false;
             this.idPedido += 1;

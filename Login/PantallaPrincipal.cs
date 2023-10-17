@@ -1,5 +1,6 @@
 ﻿using Login;
 using Sistema_Tienda;
+using Sistema_Tienda.Empleado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,10 +20,13 @@ namespace App
         private Usuario usuario;
         private Login.Login login;
         private List<Cliente> listaCliente;
+        private List<Empleado_Ventas> empleado_Ventas;
 
         public PantallaPrincipal(Usuario usuario, Login.Login login)
         {
             InitializeComponent();
+            this.listaCliente = new List<Cliente>();
+            this.empleado_Ventas = new List<Empleado_Ventas>();
             this.lstBoxVisor.Items.Clear();
             this.usuario = usuario;
             this.login = login;
@@ -39,6 +43,7 @@ namespace App
             this.lblCorreo.Text = this.usuario.correo;
             this.lblPerfil.Text = this.usuario.perfil;
             this.DeserializarClientes("../../../Data/clientes.json");
+            this.CrearYguardar1EmpleadoPrueba("../../../Data/empleadosVentas.json");
 
             switch (this.usuario.perfil)
             {
@@ -96,6 +101,7 @@ namespace App
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Vendedores";
+            this.CargarVisorVendedores();
 
         }
 
@@ -142,7 +148,7 @@ namespace App
             this.lstBoxVisor.Items.Clear();
         }
 
-        private void DeserializarClientes(string ruta)
+        public void DeserializarClientes(string ruta)
         {
             this.lstBoxVisor.Items.Clear();
             try
@@ -194,6 +200,14 @@ namespace App
             }
         }
 
+        private void CargarVisorVendedores()
+        {
+            foreach (Empleado_Ventas c in this.empleado_Ventas)
+            {
+                this.lstBoxVisor.Items.Add(c);
+            }
+        }
+
         private void btnCrear_Click(object sender, EventArgs e)
         {
             FrmAgregarCliente frmCliente = new FrmAgregarCliente();
@@ -239,6 +253,52 @@ namespace App
                     this.SerializarClientes("../../../Data/clientes.json");
                     this.CargarVisorClientes();
                 }
+            }
+        }
+
+
+        private void CrearYguardar1EmpleadoPrueba(string ruta)
+        {
+            this.lstBoxVisor.Items.Clear();
+            try
+            {
+                JsonSerializerOptions opciones = new JsonSerializerOptions();
+                opciones.WriteIndented = true;
+                Empleado_Ventas ev = new(this.listaCliente[0], "Lucas", 2000, 3010, new List<Producto>(), Experiencia.Intermedio);
+                MessageBox.Show(ev.ToString());
+                string obj_json = JsonSerializer.Serialize(ev, typeof(Empleado_Ventas), opciones);
+
+                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(ruta))
+                {
+                    sw.WriteLine(obj_json);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+
+        private void SerializarEmpleadosVentas(string ruta)
+        {
+            this.lstBoxVisor.Items.Clear();
+            try
+            {
+
+                JsonSerializerOptions opciones = new JsonSerializerOptions();
+                opciones.WriteIndented = true;
+                string obj_json = JsonSerializer.Serialize(this.listaCliente, typeof(List<Empleado_Ventas>), opciones);
+
+                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(ruta))
+                {
+                    sw.WriteLine(obj_json);
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
     }
