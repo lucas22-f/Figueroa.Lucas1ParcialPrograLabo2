@@ -96,6 +96,7 @@ namespace App
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Pedidos";
+            
 
         }
 
@@ -105,6 +106,7 @@ namespace App
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Vendedores";
+            this.lblInfolstBox.Visible = true;
             this.CargarVisorVendedores();
 
         }
@@ -115,6 +117,7 @@ namespace App
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Clientes";
+            this.lblInfolstBox.Visible = false;
             this.CargarVisorClientes();
 
         }
@@ -124,6 +127,7 @@ namespace App
             this.pantalla = "transportes";
             this.switchearHome();
             this.lblPanel.Visible = true;
+            this.lblInfolstBox.Visible = false;
             this.lblPanel.Text = "Transportes";
 
         }
@@ -230,16 +234,28 @@ namespace App
                         this.CargarVisorClientes();
                     }
                     break;
-                case "vendedores":break;
+                case "vendedores":
+                    Experiencia[] valoresExperiencia = (Experiencia[])Enum.GetValues(typeof(Experiencia));
+                    FrmEmpleadoDeVentas frmEmplVent = new FrmEmpleadoDeVentas(this.listaCliente, valoresExperiencia);
+                    frmEmplVent.ShowDialog();
+
+                    if (frmEmplVent.res == DialogResult.OK)
+                    {
+                        Empleado_Ventas empl = frmEmplVent.empl;
+                        this.listaEmpleadosVentas.Add(empl);
+                        this.SerializarEmpleadosVentas("../../../Data/empleadosVentas.json");
+                        this.CargarVisorVendedores();
+                    }
+                    break;
             }
-            
+
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
             switch (this.pantalla)
             {
-                case"clientes":
+                case "clientes":
                     int indexList = this.lstBoxVisor.SelectedIndex;
                     if (indexList != -1)
                     {
@@ -255,7 +271,7 @@ namespace App
                     }
                     break;
             }
-            
+
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -278,7 +294,7 @@ namespace App
                     }
                     break;
             }
-            
+
         }
 
 
@@ -312,7 +328,7 @@ namespace App
 
                 JsonSerializerOptions opciones = new JsonSerializerOptions();
                 opciones.WriteIndented = true;
-                string obj_json = JsonSerializer.Serialize(this.listaCliente, typeof(List<Empleado_Ventas>), opciones);
+                string obj_json = JsonSerializer.Serialize(this.listaEmpleadosVentas, typeof(List<Empleado_Ventas>), opciones);
 
                 using (System.IO.StreamWriter sw = new System.IO.StreamWriter(ruta))
                 {
@@ -332,7 +348,7 @@ namespace App
             if (indexList != -1)
             {
 
-                MessageBox.Show(this.listaEmpleadosVentas[indexList].MostarInfoDetallada());
+                MessageBox.Show(this.listaEmpleadosVentas[indexList].MostarInfoDetallada(), "Empleado : ");
 
 
             }
@@ -340,11 +356,11 @@ namespace App
 
         private void lstBoxVisor_DoubleClick(object sender, EventArgs e)
         {
-            if(this.pantalla == "vendedores")
+            if (this.pantalla == "vendedores")
             {
                 this.ExhibirDetalle();
             }
-            
+
         }
     }
 

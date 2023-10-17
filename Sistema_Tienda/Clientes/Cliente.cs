@@ -61,7 +61,7 @@ namespace Sistema_Tienda
 
         public override string ToString()
         {
-            return $"Nombre :  {this.nombre}    \n    DNI :    {this.dni}    \n    Telefono :  {this.telefono}    ";
+            return $"Nombre :  {this.nombre}    \n    DNI :  {this.dni}    \n    Telefono :  {this.telefono}    ";
         }
 
         public override int GetHashCode()

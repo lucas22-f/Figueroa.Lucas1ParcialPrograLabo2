@@ -22,5 +22,17 @@
     "Sueldo": 2000,
     "Dni": 3401,
     "Exp": 3
+  },
+  {
+    "ClienteAtendido": {
+      "nombre": "Jorgue Gonzalez",
+      "dni": 111111111,
+      "telefono": "1234-2222"
+    },
+    "Productos": null,
+    "Nombre": "Lucas 3",
+    "Sueldo": 13413,
+    "Dni": 313,
+    "Exp": 0
   }
 ]

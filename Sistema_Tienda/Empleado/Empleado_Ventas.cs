@@ -126,7 +126,7 @@ namespace Sistema_Tienda.Empleado
         public string MostarInfoDetallada()
         {
             StringBuilder sb = new(base.ToString());
-            sb.Append($"cliente:\n     {this.clienteAtendido.ToString()}     ");
+            sb.Append($"cliente:    \n    {this.clienteAtendido.ToString()}    ");
            
             return sb.ToString();
         }

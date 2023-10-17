@@ -48,7 +48,7 @@ namespace Sistema_Tienda.Empleado
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Nombre:  {this.nombre} \n Sueldo:  {this.sueldo} \n DNI:  {this.dni} \n Experiencia:  {this.exp}");
+            sb.AppendLine($"Nombre:  {this.nombre}    \n    Sueldo:  {this.sueldo}    \n    DNI:  {this.dni}    \n    Experiencia:  {this.exp}");
             
             return sb.ToString();
         }

@@ -50,6 +50,7 @@
             btnHome = new Button();
             lblPanel = new Label();
             lstBoxVisor = new ListBox();
+            lblInfolstBox = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgHome).BeginInit();
@@ -330,12 +331,23 @@
             lstBoxVisor.Visible = false;
             lstBoxVisor.DoubleClick += lstBoxVisor_DoubleClick;
             // 
+            // lblInfolstBox
+            // 
+            lblInfolstBox.AutoSize = true;
+            lblInfolstBox.Location = new Point(247, 612);
+            lblInfolstBox.Name = "lblInfolstBox";
+            lblInfolstBox.Size = new Size(222, 15);
+            lblInfolstBox.TabIndex = 22;
+            lblInfolstBox.Text = "* Doble click en el dato para ver mas info";
+            lblInfolstBox.Visible = false;
+            // 
             // PantallaPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CornflowerBlue;
             ClientSize = new Size(1194, 651);
+            Controls.Add(lblInfolstBox);
             Controls.Add(lblPanel);
             Controls.Add(btnHome);
             Controls.Add(imgPanel);
@@ -396,5 +408,6 @@
         private Button btnHome;
         private Label lblPanel;
         private ListBox lstBoxVisor;
+        private Label lblInfolstBox;
     }
 }
