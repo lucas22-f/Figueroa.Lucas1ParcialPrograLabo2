@@ -17,18 +17,33 @@ namespace Sistema_Tienda
         protected Cliente c;
 
 
-        private int IdPedido
+        public int IdPedido
         {
-            get { return this.idPedido;  }
+            get { return this.idPedido; }
+            set { this.idPedido = value; }
+        }
+        public List<Producto> Productos {
+            get { return this.productos; }
+            set { this.productos = value; }
+        }
+        public Empleado_Ventas Vendedor {
+            get { return this.vendedor; }
+            set { this.vendedor = value; }
+        }
+        public bool VentaFinalizada
+        {
+            get { return this.ventaFinalizada;}
+            set {  this.ventaFinalizada = value;}
+        }
+        public Cliente Cliente
+        {
+            get { return this.c; } set {  this.c = value; }
         }
         public Pedido()
         {
             this.productos = new List<Producto>();
-            //this.vendedor = new Empleado_Ventas();
-            this.c = new Cliente();
-            this.ventaFinalizada = false;
-            this.idPedido += 1;
         }
+        
         public Pedido(Empleado_Ventas vendedor,Cliente c , List<Producto> productos):this()
         {
             this.vendedor = vendedor;
@@ -42,15 +57,20 @@ namespace Sistema_Tienda
         {
             StringBuilder sb = new StringBuilder();
             sb.Append($"id Pedido : {this.idPedido}\n");
-            foreach(Producto producto in this.productos)
-            {
-                sb.AppendLine( producto.ToString() );
-            }
+            
+                //foreach (Producto producto in this.productos)
+                //{
+                //    sb.AppendLine(producto.ToString());
+                //}
+            
+             
+            
+            
 
-            sb.AppendLine($"Datos vendedor : {this.vendedor.ToString()}");
+            //sb.AppendLine($"Datos vendedor : {this.vendedor.ToString()}");
 
 
-            sb.AppendLine($"Datos Cliente Comprador:  {this.c.ToString()}");
+            //sb.AppendLine($"Datos Cliente Comprador:  {this.c.ToString()}");
 
 
             return sb.ToString();   

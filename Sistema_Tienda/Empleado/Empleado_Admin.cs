@@ -44,5 +44,10 @@ namespace Sistema_Tienda.Empleado
 
             return retorno;
         }
+
+        public override string MostrarInfoDetallada()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

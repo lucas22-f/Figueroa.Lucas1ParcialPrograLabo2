@@ -44,6 +44,7 @@ namespace Sistema_Tienda.Empleado
             Console.WriteLine($"tarea realizada por : {nombre}");
         }
 
+        public abstract string MostrarInfoDetallada();
 
         public override string ToString()
         {

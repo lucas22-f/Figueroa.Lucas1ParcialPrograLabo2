@@ -13,8 +13,41 @@ namespace Sistema_Tienda.Empleado
         private Pedido p;
         private static int pedidosPreparados;
         private DateTime fechaPedidoPreparado;
-        
+        public Pedido Pedido
+        {
+            get { return p; }
+            set { p = value; }
+        }
+        public DateTime FechaPedidoPreparado
+        {
+            get { return DateTime.Now; }
+            set { this.fechaPedidoPreparado = value;}
+        }
+        public new string Nombre
+        {
+            get { return base.nombre; }
+            set { base.nombre = value; }
+        }
 
+        public new double Sueldo
+        {
+            get { return base.sueldo; }
+            set { base.sueldo = value; }
+        }
+        public new int Dni
+        {
+            get { return base.dni; }
+            set { base.dni = value; }
+        }
+        public Experiencia Exp
+        {
+            get { return base.exp; }
+            set { base.exp = value; }
+        }
+        public Empleado_Envios()
+        {
+           
+        }
 
         public Empleado_Envios(string nombre, double sueldo, int dni , Pedido p,Experiencia exp) : base(nombre, sueldo, dni,exp) 
         {
@@ -49,7 +82,12 @@ namespace Sistema_Tienda.Empleado
             return retorno;
         }
 
+        public override string MostrarInfoDetallada()
+        {
+            StringBuilder sb = new(base.ToString());
+            sb.Append($"Pedido:    \n    {this.p.ToString()}    ");
 
-
+            return sb.ToString();
+        }
     }
 }

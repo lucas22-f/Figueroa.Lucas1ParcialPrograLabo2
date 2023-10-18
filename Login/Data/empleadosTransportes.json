@@ -1,0 +1,74 @@
+[
+  {
+    "Pedido": {
+      "IdPedido": 0,
+      "Productos": [],
+      "Vendedor": {
+        "ClienteAtendido": {
+          "nombre": "Juan P\u00E9rez",
+          "dni": 12345678,
+          "telefono": "1234-5678"
+        },
+        "Productos": [],
+        "Nombre": "Lucas",
+        "Sueldo": 2000,
+        "Dni": 3010,
+        "Exp": 1
+      },
+      "VentaFinalizada": false,
+      "Cliente": {
+        "nombre": "Juan P\u00E9rez",
+        "dni": 12345678,
+        "telefono": "1234-5678"
+      }
+    },
+    "FechaPedidoPreparado": "2023-10-18T00:59:52.6887076-03:00",
+    "Nombre": "Envios1",
+    "Sueldo": 2000,
+    "Dni": 2031,
+    "Exp": 0
+  },
+  {
+    "Pedido": {
+      "IdPedido": 0,
+      "Productos": [],
+      "Vendedor": {
+        "ClienteAtendido": {
+          "nombre": "Juan P\u00E9rez",
+          "dni": 12345678,
+          "telefono": "1234-5678"
+        },
+        "Productos": [],
+        "Nombre": "Lucas",
+        "Sueldo": 2000,
+        "Dni": 3010,
+        "Exp": 1
+      },
+      "VentaFinalizada": false,
+      "Cliente": {
+        "nombre": "Juan P\u00E9rez",
+        "dni": 12345678,
+        "telefono": "1234-5678"
+      }
+    },
+    "FechaPedidoPreparado": "2023-10-18T00:59:52.6889567-03:00",
+    "Nombre": "Envios2",
+    "Sueldo": 2222,
+    "Dni": 2233,
+    "Exp": 1
+  },
+  {
+    "Pedido": {
+      "IdPedido": 0,
+      "Productos": [],
+      "Vendedor": null,
+      "VentaFinalizada": false,
+      "Cliente": null
+    },
+    "FechaPedidoPreparado": "2023-10-18T00:59:52.6889635-03:00",
+    "Nombre": "Envio534",
+    "Sueldo": 1211,
+    "Dni": 2222,
+    "Exp": 3
+  }
+]

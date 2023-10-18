@@ -70,7 +70,7 @@ namespace App
             if (indexList != -1)
             {
 
-                MessageBox.Show(listaEmpleadosVentas[indexList].MostarInfoDetallada(), "Empleado : ");
+                MessageBox.Show(listaEmpleadosVentas[indexList].MostrarInfoDetallada(), "Empleado : ");
 
 
             }

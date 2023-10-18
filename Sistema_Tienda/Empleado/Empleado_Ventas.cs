@@ -123,17 +123,13 @@ namespace Sistema_Tienda.Empleado
             return base.ToString();
         }
 
-        public string MostarInfoDetallada()
+        public override string MostrarInfoDetallada()
         {
             StringBuilder sb = new(base.ToString());
             sb.Append($"cliente:    \n    {this.clienteAtendido.ToString()}    ");
-           
+
             return sb.ToString();
         }
-
-
-
-
     }
 
     

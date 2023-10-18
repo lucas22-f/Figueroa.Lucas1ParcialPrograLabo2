@@ -21,6 +21,7 @@ namespace App
         private Login.Login login;
         private List<Cliente> listaCliente;
         private List<Empleado_Ventas> listaEmpleadosVentas;
+        private List<Empleado_Envios> listaEmpleadosEnvios;
         private string pantalla;
 
         public PantallaPrincipal(Usuario usuario, Login.Login login)
@@ -28,6 +29,7 @@ namespace App
             InitializeComponent();
             this.listaCliente = new List<Cliente>();
             this.listaEmpleadosVentas = new List<Empleado_Ventas>();
+            this.listaEmpleadosEnvios = new List<Empleado_Envios>();
             this.lstBoxVisor.Items.Clear();
             this.usuario = usuario;
             this.login = login;
@@ -47,6 +49,7 @@ namespace App
             this.lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             this.listaCliente = ClientesHandler.DeserializarClientes("../../../Data/clientes.json", this.lstBoxVisor);
             this.listaEmpleadosVentas = VendedoresHandler.DeserializarEmpleadosVentas("../../../Data/empleadosVentas.json", this.lstBoxVisor);
+            this.listaEmpleadosEnvios = TransportistasHandler.DeserializarEmpleadosEnvios("../../../Data/empleadosTransportes.json", this.lstBoxVisor);
 
             switch (this.usuario.perfil)
             {
@@ -67,6 +70,8 @@ namespace App
                     this.btnClientes.BackColor = Color.Gray;
                     this.btnVendedores.Enabled = false;
                     this.btnVendedores.BackColor = Color.Gray;
+                    this.btnPedidos.Enabled = false;
+                    this.btnPedidos.BackColor = Color.Gray;
                     break;
 
 
@@ -131,6 +136,7 @@ namespace App
             this.lblPanel.Visible = true;
             this.lblInfolstBox.Visible = false;
             this.lblPanel.Text = "Transportes";
+            TransportistasHandler.CargarVisorTransportistas(this.lstBoxVisor, this.listaEmpleadosEnvios);
 
         }
 
@@ -170,6 +176,9 @@ namespace App
                 case "vendedores":
                     VendedoresHandler.CrudAgregarVendedores(this.lstBoxVisor,this.listaEmpleadosVentas,this.listaCliente);
                     break;
+                case "transportes":
+                    TransportistasHandler.CrudAgregarTransportistas(this.lstBoxVisor,this.listaEmpleadosEnvios,this.listaCliente);
+                    break;
             }
 
         }
@@ -183,6 +192,9 @@ namespace App
                     break;
                 case "vendedores":
                     VendedoresHandler.CrudEditarVendedores(this.lstBoxVisor, this.listaEmpleadosVentas, this.listaCliente);
+                    break;
+                case "transportes":
+                    TransportistasHandler.CrudEditarTransportistas(this.lstBoxVisor,this.listaEmpleadosEnvios, this.listaCliente);
                     break;
 
             }
@@ -199,6 +211,9 @@ namespace App
                 case "vendedores":
                     VendedoresHandler.CrudEliminarVendedores(this.lstBoxVisor, this.listaEmpleadosVentas, this.listaCliente);
                     break;
+                case "transportes":
+                    TransportistasHandler.CrudEliminarTransportistas(this.lstBoxVisor, this.listaEmpleadosEnvios, this.listaCliente);
+                    break;
             }
 
         }
@@ -208,6 +223,10 @@ namespace App
             if (this.pantalla == "vendedores")
             {
                 VendedoresHandler.ExhibirDetalle(this.lstBoxVisor, this.listaEmpleadosVentas);
+            }
+            if(this.pantalla == "transportes")
+            {
+                TransportistasHandler.ExhibirDetalle(this.lstBoxVisor, this.listaEmpleadosEnvios);
             }
 
         }
