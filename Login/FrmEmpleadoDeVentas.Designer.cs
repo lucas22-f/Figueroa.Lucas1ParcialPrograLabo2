@@ -56,7 +56,7 @@
             cmboBoxProductos.FormattingEnabled = true;
             cmboBoxProductos.Location = new Point(41, 388);
             cmboBoxProductos.Name = "cmboBoxProductos";
-            cmboBoxProductos.Size = new Size(121, 23);
+            cmboBoxProductos.Size = new Size(347, 23);
             cmboBoxProductos.TabIndex = 12;
             // 
             // label5

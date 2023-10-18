@@ -5,7 +5,7 @@
       "dni": 12345678,
       "telefono": "1234-5678"
     },
-    "Productos": [],
+    "ConjuntoProducto": null,
     "Nombre": "Lucas",
     "Sueldo": 2000,
     "Dni": 3010,
@@ -17,7 +17,7 @@
       "dni": 23456789,
       "telefono": "1234-5678"
     },
-    "Productos": [],
+    "ConjuntoProducto": null,
     "Nombre": "Lucas 2",
     "Sueldo": 2000,
     "Dni": 3401,
@@ -29,7 +29,7 @@
       "dni": 56789012,
       "telefono": "1234-5678"
     },
-    "Productos": null,
+    "ConjuntoProducto": null,
     "Nombre": "Elfi2",
     "Sueldo": 13413,
     "Dni": 313,
@@ -41,7 +41,7 @@
       "dni": 45678901,
       "telefono": "1234-5678"
     },
-    "Productos": null,
+    "ConjuntoProducto": null,
     "Nombre": "asdasdasd",
     "Sueldo": 1231,
     "Dni": 123,
@@ -53,7 +53,7 @@
       "dni": 12345678,
       "telefono": "1234-5678"
     },
-    "Productos": null,
+    "ConjuntoProducto": null,
     "Nombre": "asdasd1231",
     "Sueldo": 13412,
     "Dni": 123412,
@@ -65,7 +65,7 @@
       "dni": 12345678,
       "telefono": "1234-5678"
     },
-    "Productos": null,
+    "ConjuntoProducto": null,
     "Nombre": "aaaa",
     "Sueldo": 12,
     "Dni": 11,
@@ -77,7 +77,7 @@
       "dni": 89012345,
       "telefono": "1234-5678"
     },
-    "Productos": null,
+    "ConjuntoProducto": null,
     "Nombre": "asdasd",
     "Sueldo": 12311,
     "Dni": 23123,
@@ -89,10 +89,70 @@
       "dni": 12345678,
       "telefono": "1234-5678"
     },
-    "Productos": null,
+    "ConjuntoProducto": null,
     "Nombre": "Lucasd134123",
     "Sueldo": 12143,
     "Dni": 123143,
+    "Exp": 2
+  },
+  {
+    "ClienteAtendido": {
+      "nombre": "Juan P\u00E9rez",
+      "dni": 12345678,
+      "telefono": "1234-5678"
+    },
+    "ConjuntoProducto": null,
+    "Nombre": "vende213",
+    "Sueldo": 12413,
+    "Dni": 2321,
+    "Exp": 2
+  },
+  {
+    "ClienteAtendido": {
+      "nombre": "Juan P\u00E9rez",
+      "dni": 12345678,
+      "telefono": "1234-5678"
+    },
+    "ConjuntoProducto": {
+      "NombreProducto": null,
+      "Cantidad": 0,
+      "Descripcion": null
+    },
+    "Nombre": "asdasd",
+    "Sueldo": 12312,
+    "Dni": 213,
+    "Exp": 0
+  },
+  {
+    "ClienteAtendido": {
+      "nombre": "Juan P\u00E9rez",
+      "dni": 12345678,
+      "telefono": "1234-5678"
+    },
+    "ConjuntoProducto": {
+      "NombreProducto": "conjuntoProductos urbanos",
+      "Cantidad": 10,
+      "Descripcion": "Variedad urbanos"
+    },
+    "Nombre": "asdasd",
+    "Sueldo": 12314,
+    "Dni": 2312,
+    "Exp": 0
+  },
+  {
+    "ClienteAtendido": {
+      "nombre": "Juan P\u00E9rez",
+      "dni": 12345678,
+      "telefono": "1234-5678"
+    },
+    "ConjuntoProducto": {
+      "NombreProducto": "conjuntoProductos deportivos",
+      "Cantidad": 20,
+      "Descripcion": "variedad de deportivos"
+    },
+    "Nombre": "Fabian",
+    "Sueldo": 12343,
+    "Dni": 12312,
     "Exp": 2
   }
 ]

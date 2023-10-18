@@ -22,46 +22,57 @@ namespace App
 
         public static void SerializarEmpleadosVentas(string ruta, ListBox lstBoxVisor, List<Empleado_Ventas> listaEmpleadosVentas)
         {
-            lstBoxVisor.Items.Clear();
-            try
-            {
-
-                JsonSerializerOptions opciones = new JsonSerializerOptions();
-                opciones.WriteIndented = true;
-                string obj_json = JsonSerializer.Serialize(listaEmpleadosVentas, typeof(List<Empleado_Ventas>), opciones);
-
-                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(ruta))
+            
+                lstBoxVisor.Items.Clear();
+                try
                 {
-                    sw.WriteLine(obj_json);
-                }
 
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+                    JsonSerializerOptions opciones = new JsonSerializerOptions();
+                    opciones.WriteIndented = true;
+                    string obj_json = JsonSerializer.Serialize(listaEmpleadosVentas, typeof(List<Empleado_Ventas>), opciones);
+
+                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(ruta))
+                    {
+                        sw.WriteLine(obj_json);
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            
+            
         }
 
         public static List<Empleado_Ventas> DeserializarEmpleadosVentas(string ruta, ListBox lstBoxVisor)
         {
+            List<Empleado_Ventas>? res = null;
             lstBoxVisor.Items.Clear();
-            try
+            if (File.Exists(ruta))
             {
-                using (System.IO.StreamReader sr = new System.IO.StreamReader(ruta))
+                try
                 {
-                    string json_str = sr.ReadToEnd();
+                    using (System.IO.StreamReader sr = new System.IO.StreamReader(ruta))
+                    {
+                        string json_str = sr.ReadToEnd();
 
-                    List<Empleado_Ventas> listaEmpl = (List<Empleado_Ventas>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Empleado_Ventas>));
-                    return  listaEmpl;
+                        List<Empleado_Ventas> listaEmpl = (List<Empleado_Ventas>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Empleado_Ventas>));
+                        res= listaEmpl;
 
 
+                    }
                 }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                    res = null;
+                }
+
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return null;
-            }
+            return res;
+            
+            
         }
 
         public static void ExhibirDetalle(ListBox lstBoxVisor, List<Empleado_Ventas> listaEmpleadosVentas)
@@ -76,10 +87,10 @@ namespace App
             }
         }
 
-        public static void CrudAgregarVendedores(ListBox lstBoxVisor, List<Empleado_Ventas> listaEmpleadosVentas,List<Cliente> listaCliente)
+        public static void CrudAgregarVendedores(ListBox lstBoxVisor, List<Empleado_Ventas> listaEmpleadosVentas,List<Cliente> listaCliente,List<Producto> conjuntoProductos)
         {
             Experiencia[] valoresExperiencia = (Experiencia[])Enum.GetValues(typeof(Experiencia));
-            FrmEmpleadoDeVentas frmEmplVent = new FrmEmpleadoDeVentas(listaCliente, valoresExperiencia);
+            FrmEmpleadoDeVentas frmEmplVent = new FrmEmpleadoDeVentas(listaCliente, valoresExperiencia,conjuntoProductos);
             frmEmplVent.ShowDialog();
 
             if (frmEmplVent.res == DialogResult.OK)
@@ -91,13 +102,13 @@ namespace App
             }
         }
 
-        public static void CrudEditarVendedores(ListBox lstBoxVisor, List<Empleado_Ventas> listaEmpleadosVentas, List<Cliente> listaCliente)
+        public static void CrudEditarVendedores(ListBox lstBoxVisor, List<Empleado_Ventas> listaEmpleadosVentas, List<Cliente> listaCliente, List<Producto> conjuntoProductos)
         {
             int indexListVentas = lstBoxVisor.SelectedIndex;
             if (indexListVentas != -1)
             {
                 Experiencia[] valoresExperiencia = (Experiencia[])Enum.GetValues(typeof(Experiencia));
-                FrmEmpleadoDeVentas frm = new FrmEmpleadoDeVentas(listaEmpleadosVentas[indexListVentas], listaCliente, valoresExperiencia);
+                FrmEmpleadoDeVentas frm = new FrmEmpleadoDeVentas(listaEmpleadosVentas[indexListVentas], listaCliente, valoresExperiencia, conjuntoProductos);
                 frm.ShowDialog();
                 if (frm.res == DialogResult.OK)
                 {

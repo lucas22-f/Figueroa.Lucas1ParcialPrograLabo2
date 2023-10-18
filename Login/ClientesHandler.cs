@@ -10,50 +10,59 @@ namespace App
 {
     public static class ClientesHandler
     {
-
+        
         public static List<Cliente> DeserializarClientes(string ruta,ListBox lstBoxVisor)
         {
+            List<Cliente>? res = null;
             lstBoxVisor.Items.Clear();
-            
-            try
+            if (File.Exists(ruta))
             {
-                using (System.IO.StreamReader sr = new System.IO.StreamReader(ruta))
+                try
                 {
-                    string json_str = sr.ReadToEnd();
+                    using (System.IO.StreamReader sr = new System.IO.StreamReader(ruta))
+                    {
+                        string json_str = sr.ReadToEnd();
 
-                    List<Cliente> listaClientes = (List<Cliente>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Cliente>));
-                   return  listaClientes;
+                        List<Cliente> listaClientes = (List<Cliente>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Cliente>));
+                        res = listaClientes;
 
 
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                    res = null;
                 }
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return null;
-            }
+
+            return res;
+            
         }
 
         public static void SerializarClientes(string ruta , ListBox lstBoxVisor, List<Cliente> listaCliente)
         {
-            lstBoxVisor.Items.Clear();
-            try
-            {
-
-                JsonSerializerOptions opciones = new JsonSerializerOptions();
-                opciones.WriteIndented = true;
-                string obj_json = JsonSerializer.Serialize(listaCliente, typeof(List<Cliente>), opciones);
-
-                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(ruta))
+            
+                lstBoxVisor.Items.Clear();
+                try
                 {
-                    sw.WriteLine(obj_json);
-                }
 
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+                    JsonSerializerOptions opciones = new JsonSerializerOptions();
+                    opciones.WriteIndented = true;
+                    string obj_json = JsonSerializer.Serialize(listaCliente, typeof(List<Cliente>), opciones);
+
+                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(ruta))
+                    {
+                        sw.WriteLine(obj_json);
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+          
+            
         }
 
         public static void CargarVisorClientes(List<Cliente> listaCliente, ListBox lstBoxVisor)

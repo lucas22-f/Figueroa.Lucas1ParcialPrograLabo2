@@ -10,21 +10,17 @@ namespace Sistema_Tienda
     public class Pedido
     {
         //Clase pedido que contiene la informacion de 1 pedido 
-        private int idPedido;
-        private List<Producto> productos;
+       
+        private Producto conjuntoProducto;
         private Empleado_Ventas vendedor;
         private bool ventaFinalizada;
         protected Cliente c;
 
 
-        public int IdPedido
-        {
-            get { return this.idPedido; }
-            set { this.idPedido = value; }
-        }
-        public List<Producto> Productos {
-            get { return this.productos; }
-            set { this.productos = value; }
+       
+        public Producto ConjuntoProducto {
+            get { return this.conjuntoProducto; }
+            set { this.conjuntoProducto = value; }
         }
         public Empleado_Ventas Vendedor {
             get { return this.vendedor; }
@@ -41,14 +37,14 @@ namespace Sistema_Tienda
         }
         public Pedido()
         {
-            this.productos = new List<Producto>();
+            
         }
         
-        public Pedido(Empleado_Ventas vendedor,Cliente c , List<Producto> productos):this()
+        public Pedido(Empleado_Ventas vendedor,Cliente c , Producto productos):this()
         {
             this.vendedor = vendedor;
             this.c = c;
-            this.productos = productos;
+            this.conjuntoProducto = productos;
           
             
         }
@@ -56,21 +52,12 @@ namespace Sistema_Tienda
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($"id Pedido : {this.idPedido}\n");
-            
-                //foreach (Producto producto in this.productos)
-                //{
-                //    sb.AppendLine(producto.ToString());
-                //}
-            
-             
-            
-            
+           
+            sb.AppendLine($"producto:{this.conjuntoProducto.ToString()} ");/**/
 
-            //sb.AppendLine($"Datos vendedor : {this.vendedor.ToString()}");
+            sb.AppendLine($"Datos vendedor : {this.vendedor.ToString()}");
 
-
-            //sb.AppendLine($"Datos Cliente Comprador:  {this.c.ToString()}");
+            sb.AppendLine($"Datos Cliente Comprador:  {this.c.ToString()}");
 
 
             return sb.ToString();   
@@ -78,7 +65,7 @@ namespace Sistema_Tienda
 
         public static bool operator == ( Pedido a , Pedido b)
         {
-            return a.IdPedido == b.IdPedido;
+            return a.vendedor == b.vendedor;
         }
         public static bool operator !=(Pedido a, Pedido b)
         {

@@ -22,7 +22,10 @@ namespace App
         private List<Cliente> listaCliente;
         private List<Empleado_Ventas> listaEmpleadosVentas;
         private List<Empleado_Envios> listaEmpleadosEnvios;
+        private List<Producto> listaDeConjuntosProductos;
+        private List<Pedido> listaPedidos;
         private string pantalla;
+        private bool pedidoOperador;
 
         public PantallaPrincipal(Usuario usuario, Login.Login login)
         {
@@ -30,10 +33,14 @@ namespace App
             this.listaCliente = new List<Cliente>();
             this.listaEmpleadosVentas = new List<Empleado_Ventas>();
             this.listaEmpleadosEnvios = new List<Empleado_Envios>();
+            this.listaPedidos = new List<Pedido>();
             this.lstBoxVisor.Items.Clear();
             this.usuario = usuario;
             this.login = login;
             this.pantalla = "";
+            this.pedidoOperador = false;
+            this.listaDeConjuntosProductos = ProductosHandler.GenerarListaConjuntoDeProductos();
+
         }
 
         private void lblPerfil_Click(object sender, EventArgs e)
@@ -92,8 +99,11 @@ namespace App
         {
             //this.login.TxtBoxClave = "";
             //this.login.TxtBoxCorreo = "";
-            MessageBox.Show("Cerrando sesion...", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close();
+            DialogResult res = MessageBox.Show("Seguro ? ", "Atencion! Cerrar sistema ? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (res == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
 
         private void btnPedidos_Click(object sender, EventArgs e)
@@ -101,19 +111,38 @@ namespace App
             this.pantalla = "pedidos";
             this.switchearHome();
             this.lblPanel.Visible = true;
-            this.lblPanel.Text = "Pedidos";
+            this.lblPanel.Text = "Creacion de Pedido Actual";
+            this.btnCrear.Visible = false;
+            this.btnEditar.Visible = false;
+            this.btnEliminar.Visible = false;
+            this.lblControl.Visible = false;
+            FrmPedido frmPedido = new FrmPedido(this.listaDeConjuntosProductos, this.listaEmpleadosVentas, this.listaCliente);
+            frmPedido.ShowDialog();
+            Pedido pe = frmPedido.p;
+            this.listaPedidos.Add(pe);
+            this.lstBoxVisor.Items.Clear();
+            this.lstBoxVisor.Items.Add(frmPedido.p.ToString());
+            this.pedidoOperador = true;
 
 
         }
 
         private void btnVendedores_Click(object sender, EventArgs e)
         {
-            this.pantalla = "vendedores";
-            this.switchearHome();
-            this.lblPanel.Visible = true;
-            this.lblPanel.Text = "Vendedores";
-            this.lblInfolstBox.Visible = true;
-            VendedoresHandler.CargarVisorVendedores(this.lstBoxVisor, this.listaEmpleadosVentas);
+            if (this.pedidoOperador)
+            {
+                this.pantalla = "vendedores";
+                this.switchearHome();
+                this.lblPanel.Visible = true;
+                this.lblPanel.Text = "Vendedores";
+                this.lblInfolstBox.Visible = true;
+                VendedoresHandler.CargarVisorVendedores(this.lstBoxVisor, this.listaEmpleadosVentas);
+
+            }
+            else
+            {
+                MessageBox.Show("Por favor primero crear Pedido para operar", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
 
         }
@@ -131,12 +160,26 @@ namespace App
 
         private void btnTransportes_Click(object sender, EventArgs e)
         {
-            this.pantalla = "transportes";
-            this.switchearHome();
-            this.lblPanel.Visible = true;
-            this.lblInfolstBox.Visible = false;
-            this.lblPanel.Text = "Transportes";
-            TransportistasHandler.CargarVisorTransportistas(this.lstBoxVisor, this.listaEmpleadosEnvios);
+            if (this.pedidoOperador)
+            {
+                this.pantalla = "transportes";
+                this.switchearHome();
+                this.lblPanel.Visible = true;
+                this.lblInfolstBox.Visible = false;
+                this.lblPanel.Text = "Transportes";
+                this.lblInfolstBox.Visible = true;
+                //Pedido p = new Pedido(this.listaEmpleadosVentas[0], this.listaCliente[0], this.listaDeConjuntosProductos[0]);
+                //Empleado_Envios e1 = new Empleado_Envios("Lucas",2000,2020,p,Experiencia.Intermedio);
+                //Empleado_Envios e2 = new Empleado_Envios("Lucas2",2000,2222,p,Experiencia.Principiante);
+                //List<Empleado_Envios> lista1 = new List<Empleado_Envios>() {e1,e2};
+                //TransportistasHandler.SerializarEmpleadosEnvios("../../../Data/empleadosTransportes.json", this.lstBoxVisor, lista1);
+                TransportistasHandler.CargarVisorTransportistas(this.lstBoxVisor, this.listaEmpleadosEnvios);
+
+            }
+            else
+            {
+                MessageBox.Show("Por favor primero crear Pedido para operar", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
         }
 
@@ -174,10 +217,10 @@ namespace App
                     ClientesHandler.CrudCrearVendedor(this.lstBoxVisor, this.listaCliente);
                     break;
                 case "vendedores":
-                    VendedoresHandler.CrudAgregarVendedores(this.lstBoxVisor,this.listaEmpleadosVentas,this.listaCliente);
+                    VendedoresHandler.CrudAgregarVendedores(this.lstBoxVisor, this.listaEmpleadosVentas, this.listaCliente, this.listaDeConjuntosProductos);
                     break;
                 case "transportes":
-                    TransportistasHandler.CrudAgregarTransportistas(this.lstBoxVisor,this.listaEmpleadosEnvios,this.listaCliente);
+                    TransportistasHandler.CrudAgregarTransportistas(this.lstBoxVisor, this.listaEmpleadosEnvios, this.listaCliente, this.listaPedidos);
                     break;
             }
 
@@ -191,10 +234,10 @@ namespace App
                     ClientesHandler.CrudEditarVendedor(this.lstBoxVisor, this.listaCliente);
                     break;
                 case "vendedores":
-                    VendedoresHandler.CrudEditarVendedores(this.lstBoxVisor, this.listaEmpleadosVentas, this.listaCliente);
+                    VendedoresHandler.CrudEditarVendedores(this.lstBoxVisor, this.listaEmpleadosVentas, this.listaCliente, this.listaDeConjuntosProductos);
                     break;
                 case "transportes":
-                    TransportistasHandler.CrudEditarTransportistas(this.lstBoxVisor,this.listaEmpleadosEnvios, this.listaCliente);
+                    TransportistasHandler.CrudEditarTransportistas(this.lstBoxVisor, this.listaEmpleadosEnvios, this.listaCliente, this.listaPedidos);
                     break;
 
             }
@@ -224,7 +267,7 @@ namespace App
             {
                 VendedoresHandler.ExhibirDetalle(this.lstBoxVisor, this.listaEmpleadosVentas);
             }
-            if(this.pantalla == "transportes")
+            if (this.pantalla == "transportes")
             {
                 TransportistasHandler.ExhibirDetalle(this.lstBoxVisor, this.listaEmpleadosEnvios);
             }

@@ -70,7 +70,7 @@
             // 
             // btnPedidos
             // 
-            btnPedidos.BackColor = Color.RoyalBlue;
+            btnPedidos.BackColor = Color.Peru;
             btnPedidos.FlatAppearance.BorderSize = 0;
             btnPedidos.FlatStyle = FlatStyle.Flat;
             btnPedidos.ForeColor = SystemColors.ButtonHighlight;
@@ -78,7 +78,7 @@
             btnPedidos.Name = "btnPedidos";
             btnPedidos.Size = new Size(153, 54);
             btnPedidos.TabIndex = 1;
-            btnPedidos.Text = "Pedidos";
+            btnPedidos.Text = "Crear Pedido";
             btnPedidos.UseVisualStyleBackColor = false;
             btnPedidos.Click += btnPedidos_Click;
             // 

@@ -14,6 +14,22 @@ namespace Sistema_Tienda
         private int cantidad;
         private string descripcion;
 
+        public string NombreProducto
+        {
+            get { return nombreProducto; }
+            set { nombreProducto = value;}
+        }
+        public int Cantidad
+        {
+            get { return cantidad; }
+            set {  cantidad = value;}
+        }
+        public string Descripcion
+        {
+         
+            get { return descripcion; }
+            set { descripcion = value;}
+        }
         static Producto()
         {
             Producto.idProducto = 0;

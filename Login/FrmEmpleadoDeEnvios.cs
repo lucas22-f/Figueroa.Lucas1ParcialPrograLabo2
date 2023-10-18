@@ -22,25 +22,27 @@ namespace App
             InitializeComponent();
         }
 
-        public FrmEmpleadoDeEnvios(Empleado_Envios ev, List<Cliente> listaClientes, Experiencia[] valoresExperiencia) : this()
+        public FrmEmpleadoDeEnvios(Empleado_Envios ev, List<Cliente> listaClientes, Experiencia[] valoresExperiencia,List<Pedido> pedidos) : this()
         {
             base.TxtBoxNombre.Text = ev.Nombre;
             base.TxtBoxDNI.Text = ev.Dni.ToString();
             base.TxtBoxSueldo.Text = ev.Sueldo.ToString();
             base.CmboBoxExp.DataSource = valoresExperiencia;
+            this.cmbBoxPedido.DataSource = pedidos;
 
         }
-        public FrmEmpleadoDeEnvios(List<Cliente> listaClientes, Experiencia[] valoresExperiencia) : this()
+        public FrmEmpleadoDeEnvios(List<Cliente> listaClientes, Experiencia[] valoresExperiencia, List<Pedido> pedidos) : this()
         {
 
             base.CmboBoxExp.DataSource = valoresExperiencia;
+            this.cmbBoxPedido.DataSource= pedidos;
         }
 
         public override void Aceptar_Click(object sender, EventArgs e)
         {
             try
             {
-                Cliente? clienteSeleccionado = null;
+                
                 Pedido? pedido = null;
 
                 if (this.cmbBoxPedido.SelectedIndex != -1)
@@ -53,7 +55,7 @@ namespace App
                 Experiencia experienciaEnum;
                 if (Enum.TryParse(experienciaSeleccionada, out experienciaEnum))
                 {
-                    Empleado_Envios ev = new Empleado_Envios(this.TxtBoxNombre.Text,double.Parse(this.TxtBoxSueldo.Text),int.Parse(this.TxtBoxDNI.Text), new Pedido(), experienciaEnum);
+                    Empleado_Envios ev = new Empleado_Envios(this.TxtBoxNombre.Text,double.Parse(this.TxtBoxSueldo.Text),int.Parse(this.TxtBoxDNI.Text), pedido, experienciaEnum);
                     this.empl = ev;
                     this.res = DialogResult.OK;
                     this.Close();

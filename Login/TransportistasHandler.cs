@@ -22,46 +22,57 @@ namespace App
 
         public static void SerializarEmpleadosEnvios(string ruta, ListBox lstBoxVisor, List<Empleado_Envios> listaEmpleadosEnvios)
         {
-            lstBoxVisor.Items.Clear();
-            try
-            {
-
-                JsonSerializerOptions opciones = new JsonSerializerOptions();
-                opciones.WriteIndented = true;
-                string obj_json = JsonSerializer.Serialize(listaEmpleadosEnvios, typeof(List<Empleado_Envios>), opciones);
-
-                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(ruta))
+            
+                lstBoxVisor.Items.Clear();
+                try
                 {
-                    sw.WriteLine(obj_json);
+
+                    JsonSerializerOptions opciones = new JsonSerializerOptions();
+                    opciones.WriteIndented = true;
+                    string obj_json = JsonSerializer.Serialize(listaEmpleadosEnvios, typeof(List<Empleado_Envios>), opciones);
+
+                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(ruta))
+                    {
+                        sw.WriteLine(obj_json);
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
                 }
 
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+
+            
+           
         }
 
         public static List<Empleado_Envios> DeserializarEmpleadosEnvios(string ruta, ListBox lstBoxVisor)
         {
-            lstBoxVisor.Items.Clear();
-            try
+            List<Empleado_Envios>? res = null;
+            if (File.Exists(ruta))
             {
-                using (System.IO.StreamReader sr = new System.IO.StreamReader(ruta))
+                lstBoxVisor.Items.Clear();
+                try
                 {
-                    string json_str = sr.ReadToEnd();
+                    using (System.IO.StreamReader sr = new System.IO.StreamReader(ruta))
+                    {
+                        string json_str = sr.ReadToEnd();
 
-                    List<Empleado_Envios> listaEmpl = (List<Empleado_Envios>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Empleado_Envios>));
-                    return listaEmpl;
+                        List<Empleado_Envios> listaEmpl = (List<Empleado_Envios>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Empleado_Envios>));
+                        res = listaEmpl;
 
 
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                    res = null;
                 }
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return null;
-            }
+            return res;
+            
         }
 
         public static void ExhibirDetalle(ListBox lstBoxVisor, List<Empleado_Envios> listaEmpleadosEnvios)
@@ -76,10 +87,10 @@ namespace App
             }
         }
 
-        public static void CrudAgregarTransportistas(ListBox lstBoxVisor, List<Empleado_Envios> listaEmpleadosEnvios, List<Cliente> listaCliente)
+        public static void CrudAgregarTransportistas(ListBox lstBoxVisor, List<Empleado_Envios> listaEmpleadosEnvios, List<Cliente> listaCliente,List<Pedido> pedidos)
         {
             Experiencia[] valoresExperiencia = (Experiencia[])Enum.GetValues(typeof(Experiencia));
-            FrmEmpleadoDeEnvios frmEmplVent = new FrmEmpleadoDeEnvios(listaCliente, valoresExperiencia);
+            FrmEmpleadoDeEnvios frmEmplVent = new FrmEmpleadoDeEnvios(listaCliente, valoresExperiencia,pedidos);
             frmEmplVent.ShowDialog();
 
             if (frmEmplVent.res == DialogResult.OK)
@@ -91,13 +102,13 @@ namespace App
             }
         }
 
-        public static void CrudEditarTransportistas(ListBox lstBoxVisor, List<Empleado_Envios> listaEmpleadosEnvios, List<Cliente> listaCliente)
+        public static void CrudEditarTransportistas(ListBox lstBoxVisor, List<Empleado_Envios> listaEmpleadosEnvios, List<Cliente> listaCliente, List<Pedido> pedidos)
         {
             int indexListTransp = lstBoxVisor.SelectedIndex;
             if (indexListTransp != -1)
             {
                 Experiencia[] valoresExperiencia = (Experiencia[])Enum.GetValues(typeof(Experiencia));
-                FrmEmpleadoDeEnvios frm = new FrmEmpleadoDeEnvios(listaEmpleadosEnvios[indexListTransp], listaCliente, valoresExperiencia);
+                FrmEmpleadoDeEnvios frm = new FrmEmpleadoDeEnvios(listaEmpleadosEnvios[indexListTransp], listaCliente, valoresExperiencia,pedidos);
                 frm.ShowDialog();
                 if (frm.res == DialogResult.OK)
                 {

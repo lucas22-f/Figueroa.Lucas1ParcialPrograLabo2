@@ -17,13 +17,13 @@ namespace App
     {
         public Empleado_Ventas empl;
         public DialogResult res;
-       
+
         public FrmEmpleadoDeVentas()
         {
             InitializeComponent();
         }
 
-        public FrmEmpleadoDeVentas(Empleado_Ventas ev, List<Cliente> listaClientes, Experiencia[] valoresExperiencia) : this()
+        public FrmEmpleadoDeVentas(Empleado_Ventas ev, List<Cliente> listaClientes, Experiencia[] valoresExperiencia, List<Producto> conjuntoProductos) : this()
         {
             base.TxtBoxNombre.Text = ev.Nombre;
             base.TxtBoxDNI.Text = ev.Dni.ToString();
@@ -32,13 +32,15 @@ namespace App
             this.cmboBoxCliente.ValueMember = "DNI";
             this.cmboBoxCliente.DataSource = listaClientes;
             base.CmboBoxExp.DataSource = valoresExperiencia;
+            this.cmboBoxProductos.DataSource = conjuntoProductos;
 
         }
-        public FrmEmpleadoDeVentas(List<Cliente> listaClientes, Experiencia[] valoresExperiencia) : this()
+        public FrmEmpleadoDeVentas(List<Cliente> listaClientes, Experiencia[] valoresExperiencia, List<Producto> conjuntoProductos) : this()
         {
-           
+
             this.cmboBoxCliente.DataSource = listaClientes;
             base.CmboBoxExp.DataSource = valoresExperiencia;
+            this.cmboBoxProductos.DataSource = conjuntoProductos;
         }
 
 
@@ -47,18 +49,18 @@ namespace App
             try
             {
                 Cliente? clienteSeleccionado = null;
-                List<Producto>? productos = null;
+                Producto? productos = null;
                 if (this.cmboBoxCliente.SelectedIndex != -1)
                 {
                     clienteSeleccionado = (Cliente)this.cmboBoxCliente.SelectedItem;
                 }
                 if (this.cmboBoxProductos.SelectedIndex != -1)
                 {
-                    productos = (List<Producto>)this.cmboBoxProductos.SelectedItem;
+                    productos = (Producto)this.cmboBoxProductos.SelectedItem;
                 }
                 string experienciaSeleccionada = CmboBoxExp.SelectedItem.ToString();
 
-               
+
                 Experiencia experienciaEnum;
                 if (Enum.TryParse(experienciaSeleccionada, out experienciaEnum))
                 {
@@ -75,7 +77,7 @@ namespace App
                 }
 
 
-                
+
             }
             catch (Exception ex)
             {

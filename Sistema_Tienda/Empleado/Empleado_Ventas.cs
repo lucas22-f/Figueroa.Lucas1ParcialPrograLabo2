@@ -14,7 +14,7 @@ namespace Sistema_Tienda.Empleado
         // 1 empleado ventas realiza 1 pedido -> donde tiene los productos y la info del cliente. 
         protected Cliente clienteAtendido;
         private static int ventasRealizadas;
-        private List<Producto> productos;
+        private Producto conjuntoProducto;
 
         
         public Cliente ClienteAtendido
@@ -22,10 +22,10 @@ namespace Sistema_Tienda.Empleado
             get { return clienteAtendido; }
             set { clienteAtendido = value; }
         }
-        public List<Producto> Productos
+        public Producto ConjuntoProducto
         {
-            get { return productos; }
-            set { productos = value; } // Agregar un setter
+            get { return this.conjuntoProducto; }
+            set { conjuntoProducto = value; } 
         }
 
         public static int VentasRealizadas { get; private set; }
@@ -57,17 +57,17 @@ namespace Sistema_Tienda.Empleado
         }
         
        
-        public Empleado_Ventas(Cliente c , string n , double s, int dni,List<Producto> p) : base(n, s ,dni)
+        public Empleado_Ventas(Cliente c , string n , double s, int dni,Producto p) : base(n, s ,dni)
         {
             VentasRealizadas++;
             this.clienteAtendido = c;
-            this.productos = p;
+            this.conjuntoProducto = p;
         }
-        public Empleado_Ventas(Cliente cliente, string nombre, double sueldo, int dni , List<Producto> productos,Experiencia exp) : base(nombre, sueldo, dni ,exp)
+        public Empleado_Ventas(Cliente cliente, string nombre, double sueldo, int dni , Producto conjuntoProducto, Experiencia exp) : base(nombre, sueldo, dni ,exp)
         {
             VentasRealizadas++;
             this.clienteAtendido = cliente;
-            this.productos = productos;
+            this.conjuntoProducto = conjuntoProducto;
             
         }
 
@@ -101,10 +101,8 @@ namespace Sistema_Tienda.Empleado
             StringBuilder sb = new StringBuilder();
             sb.Append("Cliente:  " + clienteAtendido.ToString());
             sb.AppendLine("\nproductos: \n");
-            foreach(Producto producto in this.productos)
-            {
-                sb.AppendLine(producto.ToString());
-            }
+             sb.AppendLine(conjuntoProducto.ToString());
+            
 
             return sb.ToString();
             
@@ -112,7 +110,7 @@ namespace Sistema_Tienda.Empleado
 
         public Pedido ConcretarPedido(Cliente c)
         {
-            Pedido pedidoConcretado = new Pedido(this, this.clienteAtendido,this.productos);
+            Pedido pedidoConcretado = new Pedido(this, this.clienteAtendido,this.conjuntoProducto);
 
             return pedidoConcretado;
         }
@@ -127,6 +125,7 @@ namespace Sistema_Tienda.Empleado
         {
             StringBuilder sb = new(base.ToString());
             sb.Append($"cliente:    \n    {this.clienteAtendido.ToString()}    ");
+            sb.AppendLine($"conjuntoProducto:    \n    {this.conjuntoProducto.ToString()}    ");
 
             return sb.ToString();
         }
