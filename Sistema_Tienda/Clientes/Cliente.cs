@@ -68,5 +68,17 @@ namespace Sistema_Tienda
         {
             throw new NotImplementedException();
         }
+
+        public static int OrdenarPorNombre(Cliente a, Cliente b)
+        {
+            return string.Compare(a.nombre, b.nombre);
+        }
+        public static int OrdenarPorNombreDescendente(Cliente a, Cliente b)
+        {
+            return string.Compare(b.nombre, a.nombre);
+        }
+
+
+
     }
 }

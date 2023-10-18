@@ -54,10 +54,16 @@ namespace App
             this.lblCorreo.Text = this.usuario.correo;
             this.lblPerfil.Text = this.usuario.perfil;
             this.lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            if(!File.Exists("../../../Data/clientes.json")|| !File.Exists("../../../Data/empleadosVentas.json") || !File.Exists("../../../Data/empleadosTransportes.json"))
+            {
+                MessageBox.Show("Por favor cargue los archivos json;","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                this.Close();
+            }
             this.listaCliente = ClientesHandler.DeserializarClientes("../../../Data/clientes.json", this.lstBoxVisor);
             this.listaEmpleadosVentas = VendedoresHandler.DeserializarEmpleadosVentas("../../../Data/empleadosVentas.json", this.lstBoxVisor);
             this.listaEmpleadosEnvios = TransportistasHandler.DeserializarEmpleadosEnvios("../../../Data/empleadosTransportes.json", this.lstBoxVisor);
-
+            this.btnOrdenar.Visible = false;
+            this.btnOrdenarDesc.Visible = false;
             switch (this.usuario.perfil)
             {
                 case "vendedor":
@@ -72,14 +78,7 @@ namespace App
                     this.btnTransportistas.BackColor = Color.Gray;
                     break;
 
-                case "envios":
-                    this.btnClientes.Enabled = false;
-                    this.btnClientes.BackColor = Color.Gray;
-                    this.btnVendedores.Enabled = false;
-                    this.btnVendedores.BackColor = Color.Gray;
-                    this.btnPedidos.Enabled = false;
-                    this.btnPedidos.BackColor = Color.Gray;
-                    break;
+                
 
 
                 default: break;
@@ -116,6 +115,7 @@ namespace App
             this.btnEditar.Visible = false;
             this.btnEliminar.Visible = false;
             this.lblControl.Visible = false;
+            
             FrmPedido frmPedido = new FrmPedido(this.listaDeConjuntosProductos, this.listaEmpleadosVentas, this.listaCliente);
             frmPedido.ShowDialog();
             Pedido pe = frmPedido.p;
@@ -136,6 +136,8 @@ namespace App
                 this.lblPanel.Visible = true;
                 this.lblPanel.Text = "Vendedores";
                 this.lblInfolstBox.Visible = true;
+                this.btnOrdenar.Visible = true;
+                this.btnOrdenarDesc.Visible = true;
                 VendedoresHandler.CargarVisorVendedores(this.lstBoxVisor, this.listaEmpleadosVentas);
 
             }
@@ -154,6 +156,8 @@ namespace App
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Clientes";
             this.lblInfolstBox.Visible = false;
+            this.btnOrdenar.Visible = true;
+            this.btnOrdenarDesc.Visible = true;
             ClientesHandler.CargarVisorClientes(this.listaCliente, this.lstBoxVisor);
 
         }
@@ -168,6 +172,8 @@ namespace App
                 this.lblInfolstBox.Visible = false;
                 this.lblPanel.Text = "Transportes";
                 this.lblInfolstBox.Visible = true;
+                this.btnOrdenar.Visible = true;
+                this.btnOrdenarDesc.Visible = true;
                 //Pedido p = new Pedido(this.listaEmpleadosVentas[0], this.listaCliente[0], this.listaDeConjuntosProductos[0]);
                 //Empleado_Envios e1 = new Empleado_Envios("Lucas",2000,2020,p,Experiencia.Intermedio);
                 //Empleado_Envios e2 = new Empleado_Envios("Lucas2",2000,2222,p,Experiencia.Principiante);
@@ -203,9 +209,12 @@ namespace App
             this.lblControl.Visible = false;
             this.btnCrear.Visible = false;
             this.btnEditar.Visible = false;
+            this.lblInfolstBox.Visible = false;
             this.btnEliminar.Visible = false;
             this.lstBoxVisor.Visible = false;
             this.lblPanel.Visible = false;
+            this.btnOrdenarDesc.Visible = false;
+            this.btnOrdenar.Visible= false;
             this.lstBoxVisor.Items.Clear();
         }
 
@@ -272,6 +281,69 @@ namespace App
                 TransportistasHandler.ExhibirDetalle(this.lstBoxVisor, this.listaEmpleadosEnvios);
             }
 
+        }
+
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            if (this.pantalla == "vendedores")
+            {
+                this.lstBoxVisor.Items.Clear();
+                this.listaEmpleadosVentas.Sort(Empleado_Ventas.OrdenarPorNombre);
+                foreach (var i in this.listaEmpleadosVentas)
+                {
+                    this.lstBoxVisor.Items.Add(i);
+                }
+            }
+            else if (this.pantalla == "transportes")
+            {
+                this.lstBoxVisor.Items.Clear();
+                this.listaEmpleadosEnvios.Sort(Empleado_Envios.OrdenarPorNombre);
+                foreach (var i in this.listaEmpleadosEnvios)
+                {
+                    this.lstBoxVisor.Items.Add(i);
+                }
+            }
+            else if (this.pantalla == "clientes")
+            {
+                this.lstBoxVisor.Items.Clear();
+                this.listaCliente.Sort(Cliente.OrdenarPorNombre);
+                foreach (var i in this.listaCliente)
+                {
+                    this.lstBoxVisor.Items.Add(i);
+                }
+            }
+
+        }
+
+        private void btnOrdenarDesc_Click(object sender, EventArgs e)
+        {
+            if (this.pantalla == "vendedores")
+            {
+                this.lstBoxVisor.Items.Clear();
+                this.listaEmpleadosVentas.Sort(Empleado_Ventas.OrdenarPorNombreDescendente);
+                foreach (var i in this.listaEmpleadosVentas)
+                {
+                    this.lstBoxVisor.Items.Add(i);
+                }
+            }
+            else if (this.pantalla == "transportes")
+            {
+                this.lstBoxVisor.Items.Clear();
+                this.listaEmpleadosEnvios.Sort(Empleado_Envios.OrdenarPorNombreDescendente);
+                foreach (var i in this.listaEmpleadosEnvios)
+                {
+                    this.lstBoxVisor.Items.Add(i);
+                }
+            }
+            else if (this.pantalla == "clientes")
+            {
+                this.lstBoxVisor.Items.Clear();
+                this.listaCliente.Sort(Cliente.OrdenarPorNombreDescendente);
+                foreach (var i in this.listaCliente)
+                {
+                    this.lstBoxVisor.Items.Add(i);
+                }
+            }
         }
     }
 

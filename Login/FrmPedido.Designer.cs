@@ -102,6 +102,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(317, 271);
             Controls.Add(btnAceptar);
             Controls.Add(cmBoxCliente);
@@ -110,7 +111,9 @@
             Controls.Add(cmBoxVendedor);
             Controls.Add(label1);
             Controls.Add(cmBoxProducto);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FrmPedido";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmPedido";
             ResumeLayout(false);
             PerformLayout();

@@ -32,7 +32,7 @@ namespace App
             Cliente? clienteSeleccionado = null;
             Producto? pSeleccionado = null;
             Empleado_Ventas? emplSeleccionado = null;
-            
+
             if (this.cmBoxCliente.SelectedIndex != -1)
             {
                 clienteSeleccionado = (Cliente)this.cmBoxCliente.SelectedItem;
@@ -46,7 +46,7 @@ namespace App
                 emplSeleccionado = (Empleado_Ventas)this.cmBoxVendedor.SelectedItem;
             }
 
-            Pedido p = new Pedido(emplSeleccionado,clienteSeleccionado,pSeleccionado);
+            Pedido p = new Pedido(emplSeleccionado, clienteSeleccionado, pSeleccionado);
             this.p = p;
 
             MessageBox.Show("Pedido creado");

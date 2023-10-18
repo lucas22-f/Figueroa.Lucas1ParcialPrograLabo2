@@ -87,7 +87,14 @@ namespace Sistema_Tienda.Empleado
         }
 
 
-
+        public static int OrdenarPorNombre(Empleado_Ventas a, Empleado_Ventas b)
+        {
+            return string.Compare(a.Nombre, b.Nombre);
+        }
+        public static int OrdenarPorNombreDescendente(Empleado_Ventas a, Empleado_Ventas b)
+        {
+            return string.Compare(b.Nombre, a.Nombre);
+        }
 
 
         public override void RealizarTarea()
@@ -124,8 +131,8 @@ namespace Sistema_Tienda.Empleado
         public override string MostrarInfoDetallada()
         {
             StringBuilder sb = new(base.ToString());
-            sb.Append($"cliente:    \n    {this.clienteAtendido.ToString()}    ");
-            sb.AppendLine($"conjuntoProducto:    \n    {this.conjuntoProducto.ToString()}    ");
+            sb.Append($"cliente:    \n    {this.clienteAtendido.ToString()}    \n");
+            sb.Append($"conjuntoProducto:    \n    {this.conjuntoProducto.ToString()}    ");
 
             return sb.ToString();
         }

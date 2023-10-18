@@ -65,8 +65,16 @@ namespace Sistema_Tienda.Empleado
             return base.ToString();
         }
 
+        public static int OrdenarPorNombre(Empleado_Envios a, Empleado_Envios b)
+        {
+            return string.Compare(a.Nombre, b.Nombre);
+        }
+        public static int OrdenarPorNombreDescendente(Empleado_Envios a, Empleado_Envios b)
+        {
+            return string.Compare(b.Nombre, a.Nombre);
+        }
 
-       
+
 
         public override bool Equals(object? obj)
         {

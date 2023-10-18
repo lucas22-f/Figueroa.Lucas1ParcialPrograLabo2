@@ -46,21 +46,5 @@
     "Sueldo": 14123,
     "Dni": 1342,
     "Exp": 2
-  },
-  {
-    "ClienteAtendido": {
-      "nombre": "Juan P\u00E9rez",
-      "dni": 12345678,
-      "telefono": "1234-5678"
-    },
-    "ConjuntoProducto": {
-      "NombreProducto": "conjuntoProductos deportivos",
-      "Cantidad": 20,
-      "Descripcion": "variedad de deportivos"
-    },
-    "Nombre": "Basda",
-    "Sueldo": 41321,
-    "Dni": 123,
-    "Exp": 0
   }
 ]

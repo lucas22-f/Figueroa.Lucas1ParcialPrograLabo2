@@ -53,6 +53,8 @@
             lblInfolstBox = new Label();
             label4 = new Label();
             lblFecha = new Label();
+            btnOrdenar = new Button();
+            btnOrdenarDesc = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgHome).BeginInit();
@@ -367,12 +369,34 @@
             lblFecha.TabIndex = 24;
             lblFecha.Text = "label1";
             // 
+            // btnOrdenar
+            // 
+            btnOrdenar.Location = new Point(829, 137);
+            btnOrdenar.Name = "btnOrdenar";
+            btnOrdenar.Size = new Size(88, 23);
+            btnOrdenar.TabIndex = 25;
+            btnOrdenar.Text = "Ordenar asc";
+            btnOrdenar.UseVisualStyleBackColor = true;
+            btnOrdenar.Click += btnOrdenar_Click;
+            // 
+            // btnOrdenarDesc
+            // 
+            btnOrdenarDesc.Location = new Point(942, 137);
+            btnOrdenarDesc.Name = "btnOrdenarDesc";
+            btnOrdenarDesc.Size = new Size(90, 23);
+            btnOrdenarDesc.TabIndex = 26;
+            btnOrdenarDesc.Text = "Ordenar Desc";
+            btnOrdenarDesc.UseVisualStyleBackColor = true;
+            btnOrdenarDesc.Click += btnOrdenarDesc_Click;
+            // 
             // PantallaPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CornflowerBlue;
             ClientSize = new Size(1194, 651);
+            Controls.Add(btnOrdenarDesc);
+            Controls.Add(btnOrdenar);
             Controls.Add(lblFecha);
             Controls.Add(label4);
             Controls.Add(lblInfolstBox);
@@ -439,5 +463,7 @@
         private Label lblInfolstBox;
         private Label label4;
         private Label lblFecha;
+        private Button btnOrdenar;
+        private Button btnOrdenarDesc;
     }
 }
