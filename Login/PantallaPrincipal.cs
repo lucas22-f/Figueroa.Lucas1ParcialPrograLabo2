@@ -197,7 +197,7 @@ namespace App
                     ClientesHandler.CrudEliminarVendedor(this.lstBoxVisor, this.listaCliente);
                     break;
                 case "vendedores":
-                   
+                    VendedoresHandler.CrudEliminarVendedores(this.lstBoxVisor, this.listaEmpleadosVentas, this.listaCliente);
                     break;
             }
 
