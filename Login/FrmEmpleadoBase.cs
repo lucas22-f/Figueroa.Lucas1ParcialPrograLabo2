@@ -42,5 +42,11 @@ namespace App
         {
             MessageBox.Show("ok");
         }
+
+        public virtual void Cancelar_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("cancelado");
+        }
     }
 }

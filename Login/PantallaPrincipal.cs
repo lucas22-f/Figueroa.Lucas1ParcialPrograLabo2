@@ -44,7 +44,7 @@ namespace App
             this.lblNombre.Text = this.usuario.nombre;
             this.lblCorreo.Text = this.usuario.correo;
             this.lblPerfil.Text = this.usuario.perfil;
-            this.DeserializarClientes("../../../Data/clientes.json");
+            this.listaCliente = ClientesHandler.DeserializarClientes("../../../Data/clientes.json", this.lstBoxVisor);
             this.DeserializarEmpleadosVentas("../../../Data/empleadosVentas.json");
 
             switch (this.usuario.perfil)
@@ -118,7 +118,7 @@ namespace App
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Clientes";
             this.lblInfolstBox.Visible = false;
-            this.CargarVisorClientes();
+            ClientesHandler.CargarVisorClientes(this.listaCliente, this.lstBoxVisor);
 
         }
 
@@ -158,58 +158,6 @@ namespace App
             this.lstBoxVisor.Items.Clear();
         }
 
-        public void DeserializarClientes(string ruta)
-        {
-            this.lstBoxVisor.Items.Clear();
-            try
-            {
-                using (System.IO.StreamReader sr = new System.IO.StreamReader(ruta))
-                {
-                    string json_str = sr.ReadToEnd();
-
-                    List<Cliente> listaClientes = (List<Cliente>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Cliente>));
-                    this.listaCliente = listaClientes;
-
-
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-        }
-
-
-        private void SerializarClientes(string ruta)
-        {
-            this.lstBoxVisor.Items.Clear();
-            try
-            {
-
-                JsonSerializerOptions opciones = new JsonSerializerOptions();
-                opciones.WriteIndented = true;
-                string obj_json = JsonSerializer.Serialize(this.listaCliente, typeof(List<Cliente>), opciones);
-
-                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(ruta))
-                {
-                    sw.WriteLine(obj_json);
-                }
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-        }
-
-        private void CargarVisorClientes()
-        {
-            foreach (Cliente c in this.listaCliente)
-            {
-                this.lstBoxVisor.Items.Add(c);
-            }
-        }
-
         private void CargarVisorVendedores()
         {
             foreach (Empleado_Ventas c in this.listaEmpleadosVentas)
@@ -223,16 +171,7 @@ namespace App
             switch (this.pantalla)
             {
                 case "clientes":
-                    FrmAgregarCliente frmCliente = new FrmAgregarCliente();
-                    frmCliente.ShowDialog();
-
-                    if (frmCliente.res == DialogResult.OK)
-                    {
-                        Cliente cli = frmCliente.cliente;
-                        this.listaCliente.Add(cli);
-                        this.SerializarClientes("../../../Data/clientes.json");
-                        this.CargarVisorClientes();
-                    }
+                    ClientesHandler.CrudCrearVendedor(this.lstBoxVisor, this.listaCliente);
                     break;
                 case "vendedores":
                     Experiencia[] valoresExperiencia = (Experiencia[])Enum.GetValues(typeof(Experiencia));
@@ -256,20 +195,24 @@ namespace App
             switch (this.pantalla)
             {
                 case "clientes":
-                    int indexList = this.lstBoxVisor.SelectedIndex;
-                    if (indexList != -1)
+                    ClientesHandler.CrudEditarVendedor(this.lstBoxVisor, this.listaCliente);
+                    break;
+                case "vendedores":
+                    int indexListVentas = this.lstBoxVisor.SelectedIndex;
+                    if (indexListVentas != -1)
                     {
-
-                        FrmAgregarCliente frm = new FrmAgregarCliente(this.listaCliente[indexList]);
+                        Experiencia[] valoresExperiencia = (Experiencia[])Enum.GetValues(typeof(Experiencia));
+                        FrmEmpleadoDeVentas frm = new FrmEmpleadoDeVentas(this.listaEmpleadosVentas[indexListVentas],this.listaCliente,valoresExperiencia);
                         frm.ShowDialog();
                         if (frm.res == DialogResult.OK)
                         {
-                            this.listaCliente[indexList] = frm.cliente;
-                            this.SerializarClientes("../../../Data/clientes.json");
-                            this.CargarVisorClientes();
+                            this.listaEmpleadosVentas[indexListVentas] = frm.empl;
+                            this.SerializarEmpleadosVentas("../../../Data/empleadosVentas.json");
+                            this.CargarVisorVendedores();
                         }
                     }
                     break;
+
             }
 
         }
@@ -279,17 +222,20 @@ namespace App
             switch (this.pantalla)
             {
                 case "clientes":
-                    int indexList = this.lstBoxVisor.SelectedIndex;
-                    if (indexList != -1)
+                    ClientesHandler.CrudEliminarVendedor(this.lstBoxVisor, this.listaCliente);
+                    break;
+                case "vendedores":
+                    int indexListVen = this.lstBoxVisor.SelectedIndex;
+                    if (indexListVen != -1)
                     {
-                        Cliente cli = this.listaCliente[indexList];
-                        DialogResult ResBoton = MessageBox.Show($"Estas seguro de borrar el cliente:{cli.nombre} ? ", "Atencion! ", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning); ;
+                        Empleado_Ventas env = this.listaEmpleadosVentas[indexListVen];
+                        DialogResult ResBoton = MessageBox.Show($"Estas seguro de borrar el empleado:{env.Nombre} ? ", "Atencion! ", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning); ;
 
                         if (ResBoton == DialogResult.OK)
                         {
-                            this.listaCliente.RemoveAt(indexList);
-                            this.SerializarClientes("../../../Data/clientes.json");
-                            this.CargarVisorClientes();
+                            this.listaEmpleadosVentas.RemoveAt(indexListVen);
+                            this.SerializarEmpleadosVentas("../../../Data/empleadosVentas.json");
+                            this.CargarVisorVendedores();
                         }
                     }
                     break;

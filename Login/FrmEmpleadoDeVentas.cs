@@ -17,23 +17,26 @@ namespace App
     {
         public Empleado_Ventas empl;
         public DialogResult res;
+       
         public FrmEmpleadoDeVentas()
         {
             InitializeComponent();
         }
 
-        public FrmEmpleadoDeVentas(Empleado_Ventas ev) : this()
+        public FrmEmpleadoDeVentas(Empleado_Ventas ev, List<Cliente> listaClientes, Experiencia[] valoresExperiencia) : this()
         {
             base.TxtBoxNombre.Text = ev.Nombre;
             base.TxtBoxDNI.Text = ev.Dni.ToString();
             base.TxtBoxSueldo.Text = ev.Sueldo.ToString();
-            base.CmboBoxExp.SelectedItem = ev.Exp;
             this.cmboBoxCliente.DisplayMember = "Nombre";
             this.cmboBoxCliente.ValueMember = "DNI";
+            this.cmboBoxCliente.DataSource = listaClientes;
+            base.CmboBoxExp.DataSource = valoresExperiencia;
 
         }
         public FrmEmpleadoDeVentas(List<Cliente> listaClientes, Experiencia[] valoresExperiencia) : this()
         {
+           
             this.cmboBoxCliente.DataSource = listaClientes;
             base.CmboBoxExp.DataSource = valoresExperiencia;
         }
@@ -67,11 +70,13 @@ namespace App
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        public override void Cancelar_Click(object sender, EventArgs e)
         {
             this.res = DialogResult.Cancel;
             this.Close();
+            base.Cancelar_Click(sender, e);
         }
+
 
     }
 }

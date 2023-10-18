@@ -41,7 +41,12 @@
   },
   {
     "nombre": "Carmen S\u00E1nchez",
-    "dni": 1111111111,
+    "dni": 12345678,
     "telefono": "13134-1413"
+  },
+  {
+    "nombre": "clienteNuevo",
+    "dni": 14315,
+    "telefono": "1341345"
   }
 ]

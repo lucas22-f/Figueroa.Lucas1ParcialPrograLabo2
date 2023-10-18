@@ -123,6 +123,7 @@
             Cancelar.TabIndex = 9;
             Cancelar.Text = "Cancelar";
             Cancelar.UseVisualStyleBackColor = true;
+            Cancelar.Click += Cancelar_Click;
             // 
             // FrmEmpleadoBase
             // 

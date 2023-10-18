@@ -25,12 +25,12 @@
   },
   {
     "ClienteAtendido": {
-      "nombre": "Jorgue Gonzalez",
-      "dni": 111111111,
-      "telefono": "1234-2222"
+      "nombre": "Pepe Rodriguez",
+      "dni": 56789012,
+      "telefono": "1234-5678"
     },
     "Productos": null,
-    "Nombre": "Lucas 3",
+    "Nombre": "Elfi2",
     "Sueldo": 13413,
     "Dni": 313,
     "Exp": 0
