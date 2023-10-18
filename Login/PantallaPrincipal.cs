@@ -174,11 +174,6 @@ namespace App
                 this.lblInfolstBox.Visible = true;
                 this.btnOrdenar.Visible = true;
                 this.btnOrdenarDesc.Visible = true;
-                //Pedido p = new Pedido(this.listaEmpleadosVentas[0], this.listaCliente[0], this.listaDeConjuntosProductos[0]);
-                //Empleado_Envios e1 = new Empleado_Envios("Lucas",2000,2020,p,Experiencia.Intermedio);
-                //Empleado_Envios e2 = new Empleado_Envios("Lucas2",2000,2222,p,Experiencia.Principiante);
-                //List<Empleado_Envios> lista1 = new List<Empleado_Envios>() {e1,e2};
-                //TransportistasHandler.SerializarEmpleadosEnvios("../../../Data/empleadosTransportes.json", this.lstBoxVisor, lista1);
                 TransportistasHandler.CargarVisorTransportistas(this.lstBoxVisor, this.listaEmpleadosEnvios);
 
             }
