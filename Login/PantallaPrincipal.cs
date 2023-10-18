@@ -44,8 +44,9 @@ namespace App
             this.lblNombre.Text = this.usuario.nombre;
             this.lblCorreo.Text = this.usuario.correo;
             this.lblPerfil.Text = this.usuario.perfil;
+            this.lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             this.listaCliente = ClientesHandler.DeserializarClientes("../../../Data/clientes.json", this.lstBoxVisor);
-            this.DeserializarEmpleadosVentas("../../../Data/empleadosVentas.json");
+            this.listaEmpleadosVentas = VendedoresHandler.DeserializarEmpleadosVentas("../../../Data/empleadosVentas.json", this.lstBoxVisor);
 
             switch (this.usuario.perfil)
             {
@@ -96,7 +97,7 @@ namespace App
             this.switchearHome();
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Pedidos";
-            
+
 
         }
 
@@ -107,7 +108,8 @@ namespace App
             this.lblPanel.Visible = true;
             this.lblPanel.Text = "Vendedores";
             this.lblInfolstBox.Visible = true;
-            this.CargarVisorVendedores();
+            VendedoresHandler.CargarVisorVendedores(this.lstBoxVisor, this.listaEmpleadosVentas);
+
 
         }
 
@@ -158,14 +160,6 @@ namespace App
             this.lstBoxVisor.Items.Clear();
         }
 
-        private void CargarVisorVendedores()
-        {
-            foreach (Empleado_Ventas c in this.listaEmpleadosVentas)
-            {
-                this.lstBoxVisor.Items.Add(c);
-            }
-        }
-
         private void btnCrear_Click(object sender, EventArgs e)
         {
             switch (this.pantalla)
@@ -174,17 +168,7 @@ namespace App
                     ClientesHandler.CrudCrearVendedor(this.lstBoxVisor, this.listaCliente);
                     break;
                 case "vendedores":
-                    Experiencia[] valoresExperiencia = (Experiencia[])Enum.GetValues(typeof(Experiencia));
-                    FrmEmpleadoDeVentas frmEmplVent = new FrmEmpleadoDeVentas(this.listaCliente, valoresExperiencia);
-                    frmEmplVent.ShowDialog();
-
-                    if (frmEmplVent.res == DialogResult.OK)
-                    {
-                        Empleado_Ventas empl = frmEmplVent.empl;
-                        this.listaEmpleadosVentas.Add(empl);
-                        this.SerializarEmpleadosVentas("../../../Data/empleadosVentas.json");
-                        this.CargarVisorVendedores();
-                    }
+                    VendedoresHandler.CrudAgregarVendedores(this.lstBoxVisor,this.listaEmpleadosVentas,this.listaCliente);
                     break;
             }
 
@@ -198,19 +182,7 @@ namespace App
                     ClientesHandler.CrudEditarVendedor(this.lstBoxVisor, this.listaCliente);
                     break;
                 case "vendedores":
-                    int indexListVentas = this.lstBoxVisor.SelectedIndex;
-                    if (indexListVentas != -1)
-                    {
-                        Experiencia[] valoresExperiencia = (Experiencia[])Enum.GetValues(typeof(Experiencia));
-                        FrmEmpleadoDeVentas frm = new FrmEmpleadoDeVentas(this.listaEmpleadosVentas[indexListVentas],this.listaCliente,valoresExperiencia);
-                        frm.ShowDialog();
-                        if (frm.res == DialogResult.OK)
-                        {
-                            this.listaEmpleadosVentas[indexListVentas] = frm.empl;
-                            this.SerializarEmpleadosVentas("../../../Data/empleadosVentas.json");
-                            this.CargarVisorVendedores();
-                        }
-                    }
+                    VendedoresHandler.CrudEditarVendedores(this.lstBoxVisor, this.listaEmpleadosVentas, this.listaCliente);
                     break;
 
             }
@@ -225,86 +197,17 @@ namespace App
                     ClientesHandler.CrudEliminarVendedor(this.lstBoxVisor, this.listaCliente);
                     break;
                 case "vendedores":
-                    int indexListVen = this.lstBoxVisor.SelectedIndex;
-                    if (indexListVen != -1)
-                    {
-                        Empleado_Ventas env = this.listaEmpleadosVentas[indexListVen];
-                        DialogResult ResBoton = MessageBox.Show($"Estas seguro de borrar el empleado:{env.Nombre} ? ", "Atencion! ", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning); ;
-
-                        if (ResBoton == DialogResult.OK)
-                        {
-                            this.listaEmpleadosVentas.RemoveAt(indexListVen);
-                            this.SerializarEmpleadosVentas("../../../Data/empleadosVentas.json");
-                            this.CargarVisorVendedores();
-                        }
-                    }
+                   
                     break;
             }
 
-        }
-
-
-        private void DeserializarEmpleadosVentas(string ruta)
-        {
-            this.lstBoxVisor.Items.Clear();
-            try
-            {
-                using (System.IO.StreamReader sr = new System.IO.StreamReader(ruta))
-                {
-                    string json_str = sr.ReadToEnd();
-
-                    List<Empleado_Ventas> listaEmpl = (List<Empleado_Ventas>)System.Text.Json.JsonSerializer.Deserialize(json_str, typeof(List<Empleado_Ventas>));
-                    this.listaEmpleadosVentas = listaEmpl;
-
-
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-        }
-
-
-        private void SerializarEmpleadosVentas(string ruta)
-        {
-            this.lstBoxVisor.Items.Clear();
-            try
-            {
-
-                JsonSerializerOptions opciones = new JsonSerializerOptions();
-                opciones.WriteIndented = true;
-                string obj_json = JsonSerializer.Serialize(this.listaEmpleadosVentas, typeof(List<Empleado_Ventas>), opciones);
-
-                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(ruta))
-                {
-                    sw.WriteLine(obj_json);
-                }
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-        }
-
-        private void ExhibirDetalle()
-        {
-            int indexList = this.lstBoxVisor.SelectedIndex;
-            if (indexList != -1)
-            {
-
-                MessageBox.Show(this.listaEmpleadosVentas[indexList].MostarInfoDetallada(), "Empleado : ");
-
-
-            }
         }
 
         private void lstBoxVisor_DoubleClick(object sender, EventArgs e)
         {
             if (this.pantalla == "vendedores")
             {
-                this.ExhibirDetalle();
+                VendedoresHandler.ExhibirDetalle(this.lstBoxVisor, this.listaEmpleadosVentas);
             }
 
         }

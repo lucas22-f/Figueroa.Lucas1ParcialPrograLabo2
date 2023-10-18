@@ -56,13 +56,26 @@ namespace App
                 {
                     productos = (List<Producto>)this.cmboBoxProductos.SelectedItem;
                 }
+                string experienciaSeleccionada = CmboBoxExp.SelectedItem.ToString();
 
-                Empleado_Ventas ev = new Empleado_Ventas(clienteSeleccionado, base.TxtBoxNombre.Text, double.Parse(base.TxtBoxSueldo.Text), int.Parse(base.TxtBoxDNI.Text), productos);
+               
+                Experiencia experienciaEnum;
+                if (Enum.TryParse(experienciaSeleccionada, out experienciaEnum))
+                {
+                    Empleado_Ventas ev = new Empleado_Ventas(clienteSeleccionado, base.TxtBoxNombre.Text, double.Parse(base.TxtBoxSueldo.Text), int.Parse(base.TxtBoxDNI.Text), productos, experienciaEnum);
+                    this.empl = ev;
+                    this.res = DialogResult.OK;
+                    this.Close();
+                    base.Aceptar_Click(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("Opción no válida.");
+                    this.Close();
+                }
 
-                this.empl = ev;
-                this.res = DialogResult.OK;
-                this.Close();
-                base.Aceptar_Click(sender, e);
+
+                
             }
             catch (Exception ex)
             {

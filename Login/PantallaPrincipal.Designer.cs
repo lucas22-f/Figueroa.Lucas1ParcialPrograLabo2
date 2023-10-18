@@ -51,6 +51,8 @@
             lblPanel = new Label();
             lstBoxVisor = new ListBox();
             lblInfolstBox = new Label();
+            label4 = new Label();
+            lblFecha = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgHome).BeginInit();
@@ -341,12 +343,38 @@
             lblInfolstBox.Text = "* Doble click en el dato para ver mas info";
             lblInfolstBox.Visible = false;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.MidnightBlue;
+            label4.Font = new Font("Tw Cen MT", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.ForeColor = SystemColors.ButtonHighlight;
+            label4.Location = new Point(12, 11);
+            label4.Name = "label4";
+            label4.Size = new Size(44, 17);
+            label4.TabIndex = 23;
+            label4.Text = "Fecha";
+            // 
+            // lblFecha
+            // 
+            lblFecha.AutoSize = true;
+            lblFecha.BackColor = Color.MidnightBlue;
+            lblFecha.Font = new Font("Tw Cen MT", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblFecha.ForeColor = SystemColors.ButtonHighlight;
+            lblFecha.Location = new Point(73, 11);
+            lblFecha.Name = "lblFecha";
+            lblFecha.Size = new Size(46, 17);
+            lblFecha.TabIndex = 24;
+            lblFecha.Text = "label1";
+            // 
             // PantallaPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CornflowerBlue;
             ClientSize = new Size(1194, 651);
+            Controls.Add(lblFecha);
+            Controls.Add(label4);
             Controls.Add(lblInfolstBox);
             Controls.Add(lblPanel);
             Controls.Add(btnHome);
@@ -409,5 +437,7 @@
         private Label lblPanel;
         private ListBox lstBoxVisor;
         private Label lblInfolstBox;
+        private Label label4;
+        private Label lblFecha;
     }
 }
