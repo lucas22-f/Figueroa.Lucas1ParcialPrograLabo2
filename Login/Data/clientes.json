@@ -1,10 +1,5 @@
 [
   {
-    "nombre": "Juan P\u00E9rez",
-    "dni": 12345678,
-    "telefono": "1234-5678"
-  },
-  {
     "nombre": "Mar\u00EDa L\u00F3pez",
     "dni": 23456789,
     "telefono": "1234-5678"
@@ -38,10 +33,5 @@
     "nombre": "Sergio Ram\u00EDrez",
     "dni": 89012345,
     "telefono": "1234-5678"
-  },
-  {
-    "nombre": "Carmen S\u00E1nchez",
-    "dni": 12345678,
-    "telefono": "13134-1413"
   }
 ]

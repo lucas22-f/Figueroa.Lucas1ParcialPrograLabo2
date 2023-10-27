@@ -80,8 +80,20 @@ namespace App
 
             if (frmCliente.res == DialogResult.OK)
             {
-                Cliente cli = frmCliente.cliente;
-                listaCliente.Add(cli);
+                try
+                {
+                    Cliente cli = frmCliente.cliente;
+                    bool ok = listaCliente + cli;
+                    if (ok)
+                    {
+                        MessageBox.Show("Operacion concretada.");
+                    }
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show(e.Message, "Error");
+                }
+                
                 ClientesHandler.SerializarClientes("../../../Data/clientes.json", lstBoxVisor, listaCliente);
                 ClientesHandler.CargarVisorClientes(listaCliente, lstBoxVisor);
             }
@@ -108,12 +120,18 @@ namespace App
             int indexList = lstBoxVisor.SelectedIndex;
             if (indexList != -1)
             {
-                Cliente cli = listaCliente[indexList];
-                DialogResult ResBoton = MessageBox.Show($"Estas seguro de borrar el cliente:{cli.nombre} ? ", "Atencion! ", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning); ;
-
+                    Cliente cli = listaCliente[indexList];
+                    DialogResult ResBoton = MessageBox.Show($"Estas seguro de borrar el cliente:{cli.nombre} ? ", "Atencion! ", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning); ;
+             
+                   
+              
                 if (ResBoton == DialogResult.OK)
                 {
-                    listaCliente.RemoveAt(indexList);
+                    bool ok = listaCliente - cli;
+                    if (ok)
+                    {
+                        MessageBox.Show("Operacion concretada.");
+                    }
                     ClientesHandler.SerializarClientes("../../../Data/clientes.json", lstBoxVisor, listaCliente);
                     //this.SerializarClientes("../../../Data/clientes.json");
                     ClientesHandler.CargarVisorClientes(listaCliente, lstBoxVisor);

@@ -33,6 +33,36 @@ namespace Sistema_Tienda
           
 
         }
+        // Modificamos los operadores que van a agregar items .....
+        public static bool operator +(List<Cliente> listaClientes , Cliente cliente)
+        {
+            bool res = true;
+            foreach (var item in listaClientes)
+            {
+                if (item == cliente)
+                {
+                    res = false;
+                    break;
+                    throw new Exception("Cliente ya existente");
+                }
+            }
+            if (res)
+            {
+              listaClientes.Add(cliente); 
+            }
+            return res;
+        }
+        public static bool operator -(List<Cliente> listaClientes, Cliente cliente)
+        {
+            bool res = false;
+            if(listaClientes.Contains(cliente))
+            {
+                res = true;
+                listaClientes.Remove(cliente);
+            }
+
+            return res;
+        }
 
         public static bool operator == (Cliente c1, Cliente c2)
         {
