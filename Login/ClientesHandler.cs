@@ -73,7 +73,7 @@ namespace App
             }
         }
 
-        public static void CrudCrearVendedor(ListBox lstBoxVisor , List<Cliente> listaCliente)
+        public static void CrudCrearCliente(ListBox lstBoxVisor , List<Cliente> listaCliente)
         {
             FrmAgregarCliente frmCliente = new FrmAgregarCliente();
             frmCliente.ShowDialog();
@@ -98,7 +98,7 @@ namespace App
                 ClientesHandler.CargarVisorClientes(listaCliente, lstBoxVisor);
             }
         }
-        public static void CrudEditarVendedor(ListBox lstBoxVisor, List<Cliente> listaCliente)
+        public static void CrudEditarCliente(ListBox lstBoxVisor, List<Cliente> listaCliente)
         {
             int indexListCli = lstBoxVisor.SelectedIndex;
             if (indexListCli != -1)
@@ -115,7 +115,7 @@ namespace App
                 }
             }
         }
-        public static void CrudEliminarVendedor(ListBox lstBoxVisor, List<Cliente> listaCliente)
+        public static void CrudEliminarCliente(ListBox lstBoxVisor, List<Cliente> listaCliente)
         {
             int indexList = lstBoxVisor.SelectedIndex;
             if (indexList != -1)
