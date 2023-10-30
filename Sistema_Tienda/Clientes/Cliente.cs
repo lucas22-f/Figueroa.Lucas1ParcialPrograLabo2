@@ -55,14 +55,6 @@ namespace Sistema_Tienda
         public static bool operator -(List<Cliente> listaClientes, Cliente cliente)
         {
             bool res = false;
-            //if(listaClientes.Contains(cliente))
-            //{
-            //    res = true;
-            //    listaClientes.Remove(cliente);
-            //}
-
-            //return res;
-
             foreach (Cliente elem in listaClientes)
             {
                 if (elem != cliente)

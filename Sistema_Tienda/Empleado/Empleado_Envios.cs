@@ -55,6 +55,42 @@ namespace Sistema_Tienda.Empleado
           
         }
 
+        public static bool operator +(List<Empleado_Envios> listaEmpleadosEnvios, Empleado_Envios empl)
+        {
+            bool res = true;
+            foreach (var item in listaEmpleadosEnvios)
+            {
+                if (item == empl)
+                {
+                    res = false;
+                    throw new Exception("Empleado Envios ya existente");
+                }
+            }
+            if (res)
+            {
+                listaEmpleadosEnvios.Add(empl);
+            }
+            return res;
+        }
+
+        public static bool operator -(List<Empleado_Envios> listaEmpleadosEnvios, Empleado_Envios empl)
+        {
+            bool res = false;
+            foreach (Empleado_Envios elem in listaEmpleadosEnvios)
+            {
+                if (elem != empl)
+                {
+                    res = true;
+                }
+            }
+
+            if (res)
+            {
+                listaEmpleadosEnvios.Remove(empl);
+            }
+            return res;
+        }
+
         public override void RealizarTarea()
         {
             base.RealizarTarea();

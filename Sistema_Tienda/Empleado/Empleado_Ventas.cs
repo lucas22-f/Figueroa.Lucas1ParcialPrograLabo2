@@ -93,8 +93,8 @@ namespace Sistema_Tienda.Empleado
                 if (item == empl)
                 {
                     res = false;
-                    break;
                     throw new Exception("Empleado Ventas ya existente");
+                    
                 }
             }
             if (res)
@@ -107,12 +107,18 @@ namespace Sistema_Tienda.Empleado
         public static bool operator -(List<Empleado_Ventas> listaEmpleadosVentas, Empleado_Ventas empl)
         {
             bool res = false;
-            if (listaEmpleadosVentas.Contains(empl))
+            foreach (Empleado_Ventas elem in listaEmpleadosVentas)
             {
-                res = true;
-                listaEmpleadosVentas.Remove(empl);
+                if (elem != empl)
+                {
+                    res = true;
+                }
             }
 
+            if (res)
+            {
+                listaEmpleadosVentas.Remove(empl);
+            }
             return res;
         }
     

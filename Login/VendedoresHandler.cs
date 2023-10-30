@@ -95,8 +95,19 @@ namespace App
 
             if (frmEmplVent.res == DialogResult.OK)
             {
-                Empleado_Ventas empl = frmEmplVent.empl;
-                listaEmpleadosVentas.Add(empl);
+                try
+                {
+                    Empleado_Ventas empl = frmEmplVent.empl;
+                    bool ok = listaEmpleadosVentas + empl;
+                    if (ok)
+                    {
+                        MessageBox.Show("Operacion concretada.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 VendedoresHandler.SerializarEmpleadosVentas("../../../Data/empleadosVentas.json", lstBoxVisor,listaEmpleadosVentas);
                 VendedoresHandler.CargarVisorVendedores(lstBoxVisor, listaEmpleadosVentas);
             }
@@ -128,7 +139,11 @@ namespace App
 
                 if (ResBoton == DialogResult.OK)
                 {
-                    listaEmpleadosVentas.RemoveAt(indexListVen);
+                    bool ok = listaEmpleadosVentas - env;
+                    if (ok)
+                    {
+                        MessageBox.Show("Operacion concretada.");
+                    }
                     VendedoresHandler.SerializarEmpleadosVentas("../../../Data/empleadosVentas.json", lstBoxVisor, listaEmpleadosVentas);
                     VendedoresHandler.CargarVisorVendedores(lstBoxVisor, listaEmpleadosVentas);
                 }
