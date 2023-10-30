@@ -80,21 +80,7 @@ namespace Sistema_Tienda.Empleado
             return retorno;
         }
 
-        public static bool operator +(SistemaTienda sistema , Empleado e)
-        {
-           
-            sistema.ListaEmpleados.Add(e);
-            return true;
-            
-        }
-
-        public static bool operator -(SistemaTienda sistema, Empleado e)
-        {
-
-            sistema.ListaEmpleados.Remove(e);
-            return true;
-
-        }
+       
 
         public override int GetHashCode()
         {

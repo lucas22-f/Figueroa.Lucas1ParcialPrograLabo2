@@ -85,6 +85,37 @@ namespace Sistema_Tienda.Empleado
 
             return retorno;
         }
+        public static bool operator +(List<Empleado_Ventas> listaEmpleadosVentas, Empleado_Ventas empl)
+        {
+            bool res = true;
+            foreach (var item in listaEmpleadosVentas)
+            {
+                if (item == empl)
+                {
+                    res = false;
+                    break;
+                    throw new Exception("Empleado Ventas ya existente");
+                }
+            }
+            if (res)
+            {
+                listaEmpleadosVentas.Add(empl);
+            }
+            return res;
+        }
+
+        public static bool operator -(List<Empleado_Ventas> listaEmpleadosVentas, Empleado_Ventas empl)
+        {
+            bool res = false;
+            if (listaEmpleadosVentas.Contains(empl))
+            {
+                res = true;
+                listaEmpleadosVentas.Remove(empl);
+            }
+
+            return res;
+        }
+    
 
 
         public static int OrdenarPorNombre(Empleado_Ventas a, Empleado_Ventas b)

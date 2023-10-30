@@ -19,27 +19,30 @@ namespace App
     {
         private Usuario usuario;
         private Login.Login login;
+        private string pantalla;
+        private bool pedidoOperador;
+
         private List<Cliente> listaCliente;
         private List<Empleado_Ventas> listaEmpleadosVentas;
         private List<Empleado_Envios> listaEmpleadosEnvios;
         private List<Producto> listaDeConjuntosProductos;
         private List<Pedido> listaPedidos;
-        private string pantalla;
-        private bool pedidoOperador;
 
         public PantallaPrincipal(Usuario usuario, Login.Login login)
         {
             InitializeComponent();
-            this.listaCliente = new List<Cliente>();
-            this.listaEmpleadosVentas = new List<Empleado_Ventas>();
-            this.listaEmpleadosEnvios = new List<Empleado_Envios>();
-            this.listaPedidos = new List<Pedido>();
-            this.lstBoxVisor.Items.Clear();
+            SistemaTienda cargaSistema = new SistemaTienda();
             this.usuario = usuario;
             this.login = login;
             this.pantalla = "";
             this.pedidoOperador = false;
             this.listaDeConjuntosProductos = ProductosHandler.GenerarListaConjuntoDeProductos();
+
+            this.lstBoxVisor.Items.Clear();
+            this.listaCliente = cargaSistema.Clientes;
+            this.listaEmpleadosVentas = cargaSistema.EmpleadosVentas;
+            this.listaEmpleadosEnvios = cargaSistema.EmpleadosEnvios;
+            this.listaPedidos = cargaSistema.Pedidos;
 
         }
 

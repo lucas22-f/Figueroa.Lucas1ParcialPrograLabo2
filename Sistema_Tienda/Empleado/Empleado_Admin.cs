@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_Tienda.Empleado
 {
-    internal class Empleado_Admin : Empleado
+    public class Empleado_Admin : Empleado
     {
         //Clase derivada de Empleado que posee las funciones de Empleado de Admin.
 

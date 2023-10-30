@@ -86,7 +86,7 @@ namespace App
 
             }
         }
-
+        //cambiamos logica de agregado a la lista de empleados.
         public static void CrudAgregarVendedores(ListBox lstBoxVisor, List<Empleado_Ventas> listaEmpleadosVentas,List<Cliente> listaCliente,List<Producto> conjuntoProductos)
         {
             Experiencia[] valoresExperiencia = (Experiencia[])Enum.GetValues(typeof(Experiencia));
