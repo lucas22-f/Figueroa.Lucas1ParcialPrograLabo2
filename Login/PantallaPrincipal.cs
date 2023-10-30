@@ -36,13 +36,13 @@ namespace App
             this.login = login;
             this.pantalla = "";
             this.pedidoOperador = false;
-            this.listaDeConjuntosProductos = ProductosHandler.GenerarListaConjuntoDeProductos();
-
             this.lstBoxVisor.Items.Clear();
+
             this.listaCliente = cargaSistema.Clientes;
             this.listaEmpleadosVentas = cargaSistema.EmpleadosVentas;
             this.listaEmpleadosEnvios = cargaSistema.EmpleadosEnvios;
             this.listaPedidos = cargaSistema.Pedidos;
+            this.listaDeConjuntosProductos = cargaSistema.Productos;
 
         }
 

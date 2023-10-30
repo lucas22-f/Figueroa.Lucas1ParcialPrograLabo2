@@ -42,8 +42,8 @@ namespace Sistema_Tienda
                 if (item == cliente)
                 {
                     res = false;
-                    break;
                     throw new Exception("Cliente ya existente");
+                    
                 }
             }
             if (res)
@@ -55,13 +55,28 @@ namespace Sistema_Tienda
         public static bool operator -(List<Cliente> listaClientes, Cliente cliente)
         {
             bool res = false;
-            if(listaClientes.Contains(cliente))
+            //if(listaClientes.Contains(cliente))
+            //{
+            //    res = true;
+            //    listaClientes.Remove(cliente);
+            //}
+
+            //return res;
+
+            foreach (Cliente elem in listaClientes)
             {
-                res = true;
-                listaClientes.Remove(cliente);
+                if (elem != cliente)
+                {
+                    res = true;
+                }
             }
 
+            if (res)
+            {
+                listaClientes.Remove(cliente);
+            }
             return res;
+            
         }
 
         public static bool operator == (Cliente c1, Cliente c2)

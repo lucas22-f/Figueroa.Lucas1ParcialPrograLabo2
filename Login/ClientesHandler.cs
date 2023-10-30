@@ -91,7 +91,7 @@ namespace App
                 }
                 catch(Exception e)
                 {
-                    MessageBox.Show(e.Message, "Error");
+                    MessageBox.Show(e.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
                 
                 ClientesHandler.SerializarClientes("../../../Data/clientes.json", lstBoxVisor, listaCliente);

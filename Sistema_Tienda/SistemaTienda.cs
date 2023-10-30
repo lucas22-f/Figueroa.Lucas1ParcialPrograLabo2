@@ -1,4 +1,6 @@
-﻿namespace Sistema_Tienda.Empleado
+﻿using App;
+
+namespace Sistema_Tienda.Empleado
 {
     public class SistemaTienda// sistema que hace el manejo de todas mis clases.
     {
@@ -19,7 +21,7 @@
             this.empleadosVentas = new List<Empleado_Ventas>();
             this.empleadosEnvios = new List<Empleado_Envios>();
             this.empleadosAdmin = new List<Empleado_Admin>();
-            this.productos = new List<Producto>();
+            this.productos = ProductosHandler.GenerarListaConjuntoDeProductos();
             this.pedidos = new List<Pedido>();
         }
 
