@@ -64,11 +64,21 @@ namespace App
                 Experiencia experienciaEnum;
                 if (Enum.TryParse(experienciaSeleccionada, out experienciaEnum))
                 {
-                    Empleado_Ventas ev = new Empleado_Ventas(clienteSeleccionado, base.TxtBoxNombre.Text, double.Parse(base.TxtBoxSueldo.Text), int.Parse(base.TxtBoxDNI.Text), productos, experienciaEnum);
-                    this.empl = ev;
-                    this.res = DialogResult.OK;
-                    this.Close();
-                    base.Aceptar_Click(sender, e);
+                   
+                    if(double.TryParse(base.TxtBoxSueldo.Text, out double sueldo) && int.TryParse(base.TxtBoxDNI.Text,out int dni))
+                    {
+
+                        Empleado_Ventas ev = new Empleado_Ventas(clienteSeleccionado, base.TxtBoxNombre.Text, sueldo, dni, productos, experienciaEnum);
+                        this.empl = ev;
+                        this.res = DialogResult.OK;
+                        this.Close();
+                        base.Aceptar_Click(sender, e);
+                    }
+                    else
+                    {
+                        throw new Exception("Error de conversion de dato a tipo numerico. ");
+                    }
+
                 }
                 else
                 {
@@ -81,7 +91,7 @@ namespace App
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("tipo error : "+ ex.Message, "Error al ingresar datos del formulario.",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 

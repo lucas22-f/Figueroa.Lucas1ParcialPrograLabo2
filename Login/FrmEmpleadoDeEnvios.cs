@@ -53,9 +53,9 @@ namespace App
 
 
                 Experiencia experienciaEnum;
-                if (Enum.TryParse(experienciaSeleccionada, out experienciaEnum))
+                if (Enum.TryParse(experienciaSeleccionada, out experienciaEnum) && double.TryParse(this.TxtBoxSueldo.Text,out double sueldo) && int.TryParse(this.TxtBoxDNI.Text,out int dni))
                 {
-                    Empleado_Envios ev = new Empleado_Envios(this.TxtBoxNombre.Text,double.Parse(this.TxtBoxSueldo.Text),int.Parse(this.TxtBoxDNI.Text), pedido, experienciaEnum);
+                    Empleado_Envios ev = new Empleado_Envios(this.TxtBoxNombre.Text, sueldo, dni, pedido, experienciaEnum);
                     this.empl = ev;
                     this.res = DialogResult.OK;
                     this.Close();
@@ -63,8 +63,7 @@ namespace App
                 }
                 else
                 {
-                    MessageBox.Show("Opción no válida.");
-                    this.Close();
+                    throw new Exception("Error de conversion de dato a tipo numerico. o Opcion mal seleccionada ");
                 }
 
 
@@ -72,7 +71,7 @@ namespace App
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
 
         }
