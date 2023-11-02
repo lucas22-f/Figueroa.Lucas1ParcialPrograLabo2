@@ -95,8 +95,20 @@ namespace App
 
             if (frmEmplVent.res == DialogResult.OK)
             {
-                Empleado_Envios empl = frmEmplVent.empl;
-                listaEmpleadosEnvios.Add(empl);
+                try
+                {
+                    Empleado_Envios empl = frmEmplVent.empl;
+                    bool ok = listaEmpleadosEnvios + empl;
+                    if (ok)
+                    {
+                        MessageBox.Show("Operacion concretada.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
                 TransportistasHandler.SerializarEmpleadosEnvios("../../../Data/empleadosTransportes.json", lstBoxVisor, listaEmpleadosEnvios);
                 TransportistasHandler.CargarVisorTransportistas(lstBoxVisor, listaEmpleadosEnvios);
             }
@@ -128,7 +140,12 @@ namespace App
 
                 if (ResBoton == DialogResult.OK)
                 {
-                    listaEmpleadosEnvios.RemoveAt(indexListTransp);
+                    bool ok = listaEmpleadosEnvios - env;
+                    if (ok) 
+                    {
+                        MessageBox.Show("Operacion concretada.");
+                    }
+                    
                     TransportistasHandler.SerializarEmpleadosEnvios("../../../Data/empleadosTransportes.json", lstBoxVisor, listaEmpleadosEnvios);
                     TransportistasHandler.CargarVisorTransportistas(lstBoxVisor, listaEmpleadosEnvios);
                 }
