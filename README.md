@@ -15,6 +15,8 @@ Una aplicación WinForms en C# para gestionar pedido en el momento,  clientes, v
 ### Funcionalidad basica:
 # Login: 
 ![image](https://github.com/lucas22-f/Figueroa.Lucas1ParcialPrograLabo2/assets/71677198/a5dfa9bb-4888-475e-bbb2-a7f78d0fb9be)
+
+---
 Al loguearnos con un usuario existente en nuestro archivo, se verifica su perfil, y dependiendo el perfil dispone de permisos para ver algunos modulos.
 Como por ejemplo el de Transportistas y Vendedores ejemplo:
 
