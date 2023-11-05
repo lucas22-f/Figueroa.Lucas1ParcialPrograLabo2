@@ -19,7 +19,7 @@ Una aplicación WinForms en C# para gestionar pedido en el momento,  clientes, v
 ---
 Al loguearnos con un usuario existente en nuestro archivo, se verifica su perfil, y dependiendo el perfil dispone de permisos para ver algunos modulos.
 Como por ejemplo el de Transportistas y Vendedores ejemplo:
-
+***
 # Usuario administrador: (Creamos un pedido para operar con todos los modulos).
 ![image](https://github.com/lucas22-f/Figueroa.Lucas1ParcialPrograLabo2/assets/71677198/9c6c8fa5-d85c-4615-9007-cda92c747287)
 
